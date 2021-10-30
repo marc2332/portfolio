@@ -8,6 +8,7 @@ const ButtonStyled = styled('button', {
   background: 'transparent',
   color: 'white',
   cursor: 'pointer',
+  transition: 'color 0.3s ease 0s',
   '&:hover': {
     color: 'black',
   },
