@@ -22,7 +22,7 @@ export default function Home() {
             <Title> Marc Espín </Title>
             <InlineText> Software developer</InlineText>
             <AboutText>
-              I like descentralized apps, cryptos and to learn new things as much I can, everyday.
+              I like decentralized apps, cryptos and to learn new things as much I can, everyday.
               I am currently digging into Rust 🦀, Flutter 🐦 and Python 🐍 😄
             </AboutText>
           </div>
