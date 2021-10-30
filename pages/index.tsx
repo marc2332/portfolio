@@ -1,13 +1,19 @@
 import Head from 'next/head'
 import useBlobity from 'blobity/lib/useBlobity';
-import { Button, Container, InlineText, SubTitle, Title, AboutText } from '../components/styles'
+import { Button, Container, InlineText, SubTitle, Title, AboutText, MobileMessage } from '../components/styles'
 import Background from '../components/background'
+import { isMobile, MobileView } from 'react-device-detect';
 
 export default function Home() {
 
-  useBlobity({
-    size: 40
-  });
+  if (!isMobile) {
+    // Only use Blobity in Desktop
+    useBlobity({
+      size: 40
+    });
+  }
+
+
 
   return (
     <div>
@@ -39,6 +45,9 @@ export default function Home() {
           <div>
             <Button href="https://www.albasynchrotron.es/en">🔬 ALBA Synchrotron Internship</Button>
           </div>
+          <MobileView>
+            <MobileMessage>I suggest you to open it in desktop. It looks better :)</MobileMessage>
+          </MobileView>
         </div>
       </Container>
     </div>

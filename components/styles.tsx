@@ -57,3 +57,8 @@ export const AboutText = styled('p', {
   maxWidth: 800,
   lineHeight: 2
 })
+
+export const MobileMessage = styled('p', {
+  color: 'white',
+  fontSize: 15
+})
