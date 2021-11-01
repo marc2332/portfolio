@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { styled } from '@stitches/react';
 import React from 'react';
+import { isDesktop } from 'react-device-detect';
 
 const BackgroundContainer = styled('div', {
     position: 'fixed',
@@ -17,33 +18,36 @@ export default function Background() {
 
     function startBackground() {
 
-
-        const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.01, 5);
-        camera.position.z = 3;
-        camera.position.y = 1;
-        camera.position.x = 1;
-
-        camera.rotation.x = -0.5;
-
         const scene = new THREE.Scene();
-     
-        const light =  new THREE.PointLight( 0xffffff, 10, 5.2 );
-        light.position.y = 5;
-        scene.add(light);
-
+        const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.01, 5);
+        const light = new THREE.PointLight(0xffffff, 10, 5.2);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
         const startX = -2;
         const startZ = -2;
 
-        window.addEventListener('mousemove', (e) => {
-           
-            light.position.x = startX + (45 * 0.13) / 100 * ((e.clientX / window.innerWidth) * 100)
-            light.position.z = startZ + (23 * 0.2 / 100 * ((e.clientY / window.innerHeight) * 100))
+        camera.position.z = 3;
+        camera.position.y = 1;
+        camera.position.x = 1;
+        camera.rotation.x = -0.5;       
 
+        if (isDesktop) {
+            light.position.y = 5;
+            window.addEventListener('mousemove', (e) => {
+                light.position.x = startX + (45 * 0.13) / 100 * ((e.clientX / window.innerWidth) * 100)
+                light.position.z = startZ + (23 * 0.2 / 100 * ((e.clientY / window.innerHeight) * 100))
+            })
+        } else {
+            light.position.y = 5;
+            light.position.x = 1;
+        }
+
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
         })
 
 
         let marginZ = 0;
-        
+
         for (let z = 0; z < 23; z++, marginZ += 0.1) {
             let marginX = 0;
             for (let x = 0; x < 45; x++, marginX += 0.03) {
@@ -65,18 +69,15 @@ export default function Background() {
             renderer.render(scene, camera);
         }
 
-        window.addEventListener('resize', () => {
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        })
+        scene.add(light);
 
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setAnimationLoop(renderCycle);
         ref.current?.firstChild.appendChild(renderer.domElement);
 
     }
 
-    
+
 
 
     React.useEffect(() => {
