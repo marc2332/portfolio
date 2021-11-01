@@ -9,9 +9,9 @@ const ButtonStyled = styled('a', {
   background: 'transparent',
   color: 'white',
   cursor: 'pointer',
+  transition: 'color 0.3s ease 0s',
   fontFamily: 'Inter',
   fontSize: 14,
-  transition: '0.1s ease-in-out',
   textDecoration: 'none',
   display: 'inline-block',
   //Desktop
@@ -19,7 +19,7 @@ const ButtonStyled = styled('a', {
     '&:hover': {
       color: 'black',
       fontWeight: 'bold'
-    }
+    },
   },
   // Mobile
   '@media (max-width: 600px)': {
