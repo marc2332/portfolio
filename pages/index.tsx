@@ -5,7 +5,6 @@ import Background from '../components/background'
 import { isMobile, MobileView } from 'react-device-detect';
 import Loader from '../components/loader';
 import { useEffect, useState } from 'react';
-import Options from '../components/options';
 import { RecoilRoot } from 'recoil';
 
 export default function Home() {
@@ -68,6 +67,5 @@ export default function Home() {
         {loaderShowing && <Loader />}
       </div>
     </RecoilRoot>
-
   )
 }
