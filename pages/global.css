@@ -12,3 +12,15 @@ body {
 * {
     -webkit-tap-highlight-color: transparent;
 }
+
+.loader {
+    background: black;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

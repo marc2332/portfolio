@@ -1,6 +1,5 @@
 import { styled } from '@stitches/react';
 
-
 const ButtonStyled = styled('a', {
   borderRadius: 7,
   border: 'none',
@@ -9,7 +8,7 @@ const ButtonStyled = styled('a', {
   background: 'transparent',
   color: 'white',
   cursor: 'pointer',
-  transition: 'color 0.3s ease 0s',
+  transition: '0.15s ease-in-out',
   fontFamily: 'Inter',
   fontSize: 14,
   textDecoration: 'none',
@@ -59,7 +58,8 @@ export const InlineText = styled('p', {
 export const Container = styled('div', {
   margin: '50px',
   display: 'flex',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  overflow: 'auto'
 });
 
 export const AboutText = styled('p', {
