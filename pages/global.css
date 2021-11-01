@@ -8,3 +8,7 @@ body {
 #__next {
     display: flex;
 }
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import useBlobity from 'blobity/lib/useBlobity';
-import { Button, Container, InlineText, SubTitle, Title, AboutText, MobileMessage } from '../components/styles'
+import { Button, Container, InlineText, SubTitle, Title, AboutText, MobileMessage, UnorderedList } from '../components/styles'
 import Background from '../components/background'
 import { isMobile, MobileView } from 'react-device-detect';
 
@@ -9,11 +9,11 @@ export default function Home() {
   if (!isMobile) {
     // Only use Blobity in Desktop
     useBlobity({
-      size: 40
+      size: 35,
+      zIndex: -99,
+      opacity: 0.5,
     });
   }
-
-
 
   return (
     <div>
@@ -32,14 +32,16 @@ export default function Home() {
               I am currently digging into Rust 🦀, Flutter 🐦 and Python 🐍 😄
             </AboutText>
           </div>
-          <Button href="https://github.com/marc2332">GitHub</Button>
+          <Button href="https://github.com/marc2332">💻 GitHub</Button>
           <SubTitle>Projects</SubTitle>
           <div >
-            <Button href="https://github.com/sardana-org/sardana-jupyter">💃 Sardana-Jupyter </Button>
-            <Button href="https://github.com/marc2332/rust_blockchain">💻 Rust blockchain </Button>
-            <Button href="https://github.com/marc2332/solana-mobile-wallet">💸 Solana Wallet </Button>
-            <Button href="https://github.com/marc2332/ham">🧪 ham </Button>
-            <Button href="https://github.com/Graviton-Code-Editor/Graviton-App">🚀 Graviton Editor </Button>
+            <UnorderedList>
+              <li><Button href="https://github.com/sardana-org/sardana-jupyter">💃 Sardana-Jupyter </Button></li>
+              <li><Button href="https://github.com/marc2332/rust_blockchain">💻 Rust blockchain </Button></li>
+              <li><Button href="https://github.com/marc2332/solana-mobile-wallet">💸 Solana Wallet </Button></li>
+              <li><Button href="https://github.com/marc2332/ham">🧪 ham </Button></li>
+              <li><Button href="https://github.com/Graviton-Code-Editor/Graviton-App">🚀 Graviton Editor </Button></li>
+            </UnorderedList>
           </div>
           <SubTitle>Experience</SubTitle>
           <div>

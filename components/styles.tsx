@@ -1,6 +1,7 @@
 import { styled } from '@stitches/react';
 
-const ButtonStyled = styled('button', {
+
+const ButtonStyled = styled('a', {
   borderRadius: 7,
   border: 'none',
   padding: '10px 20px',
@@ -8,25 +9,34 @@ const ButtonStyled = styled('button', {
   background: 'transparent',
   color: 'white',
   cursor: 'pointer',
-  '&:hover': {
-    color: 'black',
+  fontFamily: 'Inter',
+  fontSize: 14,
+  transition: '0.1s ease-in-out',
+  textDecoration: 'none',
+  display: 'inline-block',
+  //Desktop
+  '@media (min-width: 600px)': {
+    '&:hover': {
+      color: 'black',
+      fontWeight: 'bold'
+    }
   },
-  '& a': {
-    textDecoration: 'none',
-    pointerEvents: 'none',
-    color: 'inherit'
-  },
-  fontFamily: 'Inter'
+  // Mobile
+  '@media (max-width: 600px)': {
+    '&:hover': {
+      background: 'rgba(255,255,255,0.5)',
+      color: 'black',
+      transform: 'scale(0.9)',
+      fontWeight: 'bold'
+    },
+  }
 });
 
 export function Button({ href, children }) {
   return (
-    <a href={href} target="_blank">
-      <ButtonStyled>
-        {children}
-      </ButtonStyled>
-    </a>
-
+    <ButtonStyled href={href} target="_blank">
+      {children}
+    </ButtonStyled>
   )
 }
 
@@ -61,4 +71,16 @@ export const AboutText = styled('p', {
 export const MobileMessage = styled('p', {
   color: 'white',
   fontSize: 15
+})
+
+export const UnorderedList = styled('ul', {
+  listStyle: 'none',
+  margin: 0,
+  padding: 0,
+  display: 'block',
+  '@media (min-width: 600px)': {
+    '& > li': {
+      display: 'inline-block'
+    },
+  }
 })
