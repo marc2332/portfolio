@@ -1,16 +1,12 @@
 import Head from 'next/head'
-import useBlobity from 'blobity/lib/useBlobity';
 import { WiderContainer, PostContainer } from '../../components/styles'
-import { isMobile, MobileView } from 'react-device-detect';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import fs from 'fs'
 import path from 'path'
 import highlight from 'remark-highlight.js'
 import matter from 'gray-matter';
 import ReactMarkdown from 'react-markdown';
-import { styled } from '@stitches/react';
 import 'highlight.js/styles/base16/gruvbox-dark-hard.css'
-
 
 export default function Post({ title, content }) {
   return (

@@ -37,16 +37,16 @@ export default function Home() {
           </SmallTitle>
           <List>
             <ListLink>
-              <TextLinkAlternative target="_blank" href="https://github.com/Graviton-Code-Editor/Graviton-App"> {'->'} Graviton Editor</TextLinkAlternative>
+              <TextLinkAlternative target="_blank" href="https://github.com/Graviton-Code-Editor/Graviton-App"> {'->'} 💻 Graviton Editor</TextLinkAlternative>
             </ListLink>
             <ListLink>
-              <TextLinkAlternative target="_blank" href="https://github.com/marc2332/sardana-jupyter"> {'->'} Sardana-Jupyter</TextLinkAlternative>
+              <TextLinkAlternative target="_blank" href="https://github.com/marc2332/sardana-jupyter"> {'->'} 💃 Sardana-Jupyter</TextLinkAlternative>
             </ListLink>
             <ListLink>
-              <TextLinkAlternative target="_blank" href="https://github.com/marc2332/solana-mobile-wallet"> {'->'} Solana Mobile Wallet</TextLinkAlternative>
+              <TextLinkAlternative target="_blank" href="https://github.com/marc2332/solana-mobile-wallet"> {'->'} 💳 Solana Mobile Wallet</TextLinkAlternative>
             </ListLink>
             <ListLink>
-              <TextLinkAlternative target="_blank" href="https://github.com/marc2332/rust_blockchain"> {'->'} Rust blockchain network</TextLinkAlternative>
+              <TextLinkAlternative target="_blank" href="https://github.com/marc2332/rust_blockchain"> {'->'} 🦀 Rust blockchain network</TextLinkAlternative>
             </ListLink>
           </List>
         </div>
