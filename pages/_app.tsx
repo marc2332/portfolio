@@ -29,7 +29,7 @@ export default function MyApp({ Component, pageProps }) {
       {isLoaded ? (
         <>
           <SideBar className={isMenuHidden && 'hidden'} onLinkTapped={() => isMobile && setMenu(true)} />
-          <MenuButton onClick={() => setMenu(!isMenuHidden)}>{isMenuHidden ? '<-' : '->'} menu</MenuButton>
+          <MenuButton onClick={() => setMenu(!isMenuHidden)}>{isMenuHidden ? '->':'<-'} menu</MenuButton>
           <PagesContainer className={!isMenuHidden && isMobile && 'hidden'}>
             <Component {...pageProps} />
           </PagesContainer>
