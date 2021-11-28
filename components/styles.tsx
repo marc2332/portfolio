@@ -101,7 +101,7 @@ export const PostContainer = styled('div', {
     width: '100%',
   },
   '& > i ':{
-    textDecoration: 'underline'
+   fontWeight: 'bold'
   },
   '& *:not(h1,h2,h3,h4,h5,span)':{
     lineHeight: '160%',
