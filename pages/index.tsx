@@ -1,68 +1,56 @@
 import Head from 'next/head'
-import useBlobity from 'blobity/lib/useBlobity';
-import { Button, Container, InlineText, SubTitle, Title, AboutText, MobileMessage, UnorderedList } from '../components/styles'
-import Background from '../components/background'
-import { isMobile, MobileView } from 'react-device-detect';
-import Loader from '../components/loader';
-import { useEffect, useState } from 'react';
+import { Container, List, ListLink, SmallTitle, SubTitle, Text, TextLink, TextLinkAlternative } from '../components/styles'
+import React from 'react';
 
 export default function Home() {
-
-  const [loaderShowing, showLoader] = useState(true);
-
-  if (!isMobile) {
-    // Only use Blobity in Desktop
-    useBlobity({
-      size: 35,
-      zIndex: -99,
-      opacity: 0.5,
-    });
-  }
-
-  useEffect(() => {
-    setTimeout(() => {
-      showLoader(false)
-    }, 200)
-  }, [])
-
   return (
     <div>
       <Head>
         <title>Marc Espín</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        <Background />
         <div>
-          <div>
-            <Title> Marc Espín </Title>
-            <InlineText> Software developer</InlineText>
-            <AboutText>
-              I like decentralized apps, cryptos and to learn new things as much I can, everyday.
-              I am currently digging into Rust 🦀, Flutter 🐦 and Python 🐍 😄
-            </AboutText>
-          </div>
-          <Button href="https://github.com/marc2332">💻 GitHub</Button>
-          <SubTitle>Projects</SubTitle>
-          <div >
-            <UnorderedList>
-              <li><Button href="https://github.com/sardana-org/sardana-jupyter">💃 Sardana-Jupyter </Button></li>
-              <li><Button href="https://github.com/marc2332/rust_blockchain">💻 Rust blockchain </Button></li>
-              <li><Button href="https://github.com/marc2332/solana-mobile-wallet">💸 Solana Wallet </Button></li>
-              <li><Button href="https://github.com/marc2332/ham">🧪 ham </Button></li>
-              <li><Button href="https://github.com/Graviton-Code-Editor/Graviton-App">🚀 Graviton Editor </Button></li>
-            </UnorderedList>
-          </div>
-          <SubTitle>Experience</SubTitle>
-          <div>
-            <Button href="https://www.albasynchrotron.es/en">🔬 ALBA Synchrotron Internship</Button>
-          </div>
-          <MobileView>
-            <MobileMessage>I suggest you to open it in desktop. It looks better :)</MobileMessage>
-          </MobileView>
+          <SubTitle>
+            /about
+          </SubTitle>
+          <Text>
+            I am a spanish programming student. I like decentralized apps, cryptos and to learn new things as much I can, everyday. I am currently digging into Rust 🦀, Flutter 🐦 and Python 🐍 😄, but I am already used to JavaScript, TypeScript, NodeJS and it’s ecosystem.
+          </Text>
+          <SmallTitle>
+            Contact
+          </SmallTitle>
+          <List>
+            <ListLink>
+              <TextLink target="_blank" href="https://github.com/marc2332">
+                {'->'} GitHub
+              </TextLink>
+            </ListLink>
+            <ListLink>
+              <TextLink href="mailto:mespinsanz@gmail.com">
+                {'->'} mespinsanz@gmail.com
+              </TextLink>
+            </ListLink>
+          </List>
+
+          <SmallTitle>
+            Projects
+          </SmallTitle>
+          <List>
+            <ListLink>
+              <TextLinkAlternative target="_blank" href="https://github.com/Graviton-Code-Editor/Graviton-App"> {'->'} Graviton Editor</TextLinkAlternative>
+            </ListLink>
+            <ListLink>
+              <TextLinkAlternative target="_blank" href="https://github.com/marc2332/sardana-jupyter"> {'->'} Sardana-Jupyter</TextLinkAlternative>
+            </ListLink>
+            <ListLink>
+              <TextLinkAlternative target="_blank" href="https://github.com/marc2332/solana-mobile-wallet"> {'->'} Solana Mobile Wallet</TextLinkAlternative>
+            </ListLink>
+            <ListLink>
+              <TextLinkAlternative target="_blank" href="https://github.com/marc2332/rust_blockchain"> {'->'} Rust blockchain network</TextLinkAlternative>
+            </ListLink>
+          </List>
         </div>
       </Container>
-      {loaderShowing && <Loader />}
     </div>
   )
 }

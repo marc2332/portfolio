@@ -1,8 +1,9 @@
 
 body {
     margin: 0;
-    background: black;
+    background: #181818;
     font-family: 'Inter', sans-serif;
+    overflow: hidden;
 }
 
 #__next {
@@ -14,7 +15,7 @@ body {
 }
 
 .loader {
-    background: black;
+    background: transparent;
     height: 100%;
     width: 100%;
     position: fixed;
@@ -23,4 +24,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+*::selection {
+    background: rgba(200, 200, 200,0.3);
 }

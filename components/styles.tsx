@@ -1,71 +1,73 @@
-import { styled } from '@stitches/react';
+import { styled, keyframes } from '@stitches/react';
 
-const ButtonStyled = styled('a', {
-  borderRadius: 7,
-  border: 'none',
-  padding: '10px 20px',
-  margin: 15,
-  background: 'transparent',
-  color: 'white',
-  cursor: 'pointer',
-  transition: '0.15s ease-in-out',
-  fontFamily: 'Inter',
-  fontSize: 14,
-  textDecoration: 'none',
-  display: 'inline-block',
-  //Desktop
-  '@media (min-width: 600px)': {
-    '&:hover': {
-      color: 'black',
-      fontWeight: 'bold'
-    },
+export const fadeIn = keyframes({
+  from: {
+    opacity: 0
   },
-  // Mobile
-  '@media (max-width: 600px)': {
-    '&:hover': {
-      background: 'rgba(255,255,255,0.5)',
-      color: 'black',
-      transform: 'scale(0.9)',
-      fontWeight: 'bold'
-    },
+  to: {
+    opacity: 1
   }
-});
-
-export function Button({ href, children }) {
-  return (
-    <ButtonStyled href={href} target="_blank">
-      {children}
-    </ButtonStyled>
-  )
-}
+})
 
 export const Title = styled('h1', {
-  color: 'white',
+  color: '#E0D5AD',
+  fontSize: 50,
+  width: 50,
+  paddingLeft: 40,
   display: 'inline-block',
+  fontWeight: 'bold'
 });
 
-export const SubTitle = styled('h2', {
-  color: 'white'
+export const SubTitle = styled('h1', {
+  color: '#DDB071',
+  fontWeight: 'bold'
 });
 
 export const InlineText = styled('p', {
   display: 'inline-block',
   fontSize: 15,
-  color: 'white',
+  color: 'black',
   marginLeft: '20px'
 });
 
 export const Container = styled('div', {
-  margin: '50px',
   display: 'flex',
   justifyContent: 'center',
-  overflow: 'auto'
+  padding: '50px 15%',
+  overflow: 'auto',
+  animation: `${fadeIn} 1s`,
+  '@media (max-width: 600px)':{
+    padding: '40px 5px',
+    paddingRight: '15px'
+  }
 });
 
-export const AboutText = styled('p', {
-  color: '#c1c1c1',
+
+export const WiderContainer = styled('div', {
+  display: 'flex',
+  justifyContent: 'center',
+  padding: '50px 5%',
+  overflow: 'auto',
+  animation: `${fadeIn} 1s`,
+  '@media (max-width: 600px)':{
+    padding: '60px 5px'
+  }
+});
+
+export const Text = styled('p', {
+  color: '#DDB071',
   maxWidth: 800,
   lineHeight: 2
+})
+
+export const TextLink = styled('a', {
+  color: '#CF412E',
+  textDecoration: 'underline'
+})
+
+export const TextLinkAlternative = styled('a', {
+  color: '#82B071',
+  textDecoration: 'underline'
 })
 
 export const MobileMessage = styled('p', {
@@ -73,14 +75,60 @@ export const MobileMessage = styled('p', {
   fontSize: 15
 })
 
-export const UnorderedList = styled('ul', {
+export const List = styled('ul', {
   listStyle: 'none',
   margin: 0,
-  padding: 0,
-  display: 'block',
-  '@media (min-width: 600px)': {
-    '& > li': {
-      display: 'inline-block'
-    },
+  padding: 5
+})
+
+export const ListLink = styled('li', {
+  margin: '10px',
+})
+
+export const SmallTitle = styled('h3', {
+  color: '#DDB071'
+})
+
+export const PostCard = styled('div', {
+  marginBottom: 50,
+  color: '#DDB071',
+  fontFamily: 'Arbutus Slab',
+  cursor: 'pointer',
+  ':hover > *': {
+    textDecoration: 'underline'
   }
+})
+
+export const PostContainer = styled('div', {
+  color: '#DDB071',
+  width: '65%',
+  fontFamily: 'Arbutus Slab',
+  '@media (max-width: 600px)':{
+    width: '95%',
+  },
+  '& *:not(h1,h2,h3,h4,h5,span)':{
+    lineHeight: '160%',
+  }
+});
+
+export const MenuButton = styled('button', {
+  padding: 5,
+  borderRadius: 5,
+  position: 'relative',
+  height: 50,
+  width: 50,
+  border: 'none',
+  color: '#DDB071',
+  background: 'none',
+  fontFamily: 'Inter',
+  cursor: 'pointer',
+  '&:hover': {
+    textDecoration: 'underline'
+  }
+})
+
+export const AppContainer = styled('div', {
+  display: 'flex',
+  height: '100%',
+  width: '100%'
 })
