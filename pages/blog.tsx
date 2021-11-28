@@ -38,8 +38,8 @@ export async function getStaticProps() {
   return {
     props: {
       posts: paths.reverse().map(({ params: { slug } }) => {
-        let { content, data } = matter(fs.readFileSync(`${process.cwd()}/blog/${slug}.md`))
-        return { content, data, slug }
+        let { data } = matter(fs.readFileSync(`${process.cwd()}/blog/${slug}.md`))
+        return { data, slug }
       })
     }
   }
