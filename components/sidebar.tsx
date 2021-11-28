@@ -1,8 +1,9 @@
 import { keyframes, styled } from "@stitches/react";
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, ReactElement } from "react";
 import Link from 'next/link'
 import { Title } from "./styles";
 import { useRouter } from "next/dist/client/router";
+import { isMobile } from "react-device-detect";
 
 export const slideIn = keyframes({
     from: {
@@ -18,17 +19,19 @@ export const slideIn = keyframes({
 const SideBarContainer = styled('div', {
     background: '#282828',
     padding: 40,
-    width: '250px',
+    width: '280px',
     color: 'black',
     display: 'inline-block',
     fontWeight: 'bold',
     marginLeft: 0,
     overflow: 'hidden',
+    position: 'relative',
     '&:not(.hidden)':{
         animation: `${slideIn} ease-in-out 0.15s`,
     },
     '&.hidden':{
         transition: '0.15s ease-in-out',
+        display: 'block',
         width: 0,
         marginLeft: -80
     }
@@ -67,12 +70,14 @@ const SideBarLink = styled('div', {
 });
 
 interface SideBarOptions extends PropsWithChildren<any> {
-    onLinkTapped: () => void
+    onLinkTapped: () => void,
+    Button: () => ReactElement
 }
 
-export default function SideBar({ className, onLinkTapped }: SideBarOptions) {
+export default function SideBar({ className, onLinkTapped, Button }: SideBarOptions) {
     return (
         <SideBarContainer className={className}>
+            {isMobile && <Button/>}
             <Title>
                 Marc 
                 Espín

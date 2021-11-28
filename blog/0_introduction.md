@@ -1,6 +1,6 @@
 ---
 title: Introduction to my blog
-date: 28 September of 2021
+date: 28 November of 2021
 ---
 
 Hello, my name is Marc. 

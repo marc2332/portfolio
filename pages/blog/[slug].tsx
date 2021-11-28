@@ -20,9 +20,7 @@ export default function Post({ title, content }) {
           <ReactMarkdown plugins={[highlight]}>{content}</ReactMarkdown>
         </PostContainer>
       </WiderContainer>
-
     </>
-
   )
 }
 

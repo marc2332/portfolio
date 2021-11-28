@@ -37,8 +37,7 @@ export const Container = styled('div', {
   overflow: 'auto',
   animation: `${fadeIn} 1s`,
   '@media (max-width: 600px)':{
-    padding: '40px 5px',
-    paddingRight: '15px'
+    padding: '40px 15px'
   }
 });
 
@@ -50,7 +49,7 @@ export const WiderContainer = styled('div', {
   overflow: 'auto',
   animation: `${fadeIn} 1s`,
   '@media (max-width: 600px)':{
-    padding: '60px 5px'
+    padding: '40px 15px'
   }
 });
 
@@ -104,7 +103,7 @@ export const PostContainer = styled('div', {
   width: '65%',
   fontFamily: 'Arbutus Slab',
   '@media (max-width: 600px)':{
-    width: '95%',
+    width: '100%',
   },
   '& *:not(h1,h2,h3,h4,h5,span)':{
     lineHeight: '160%',
@@ -112,16 +111,24 @@ export const PostContainer = styled('div', {
 });
 
 export const MenuButton = styled('button', {
-  padding: 5,
-  borderRadius: 5,
-  position: 'relative',
+  padding: 10,
   height: 50,
   width: 50,
   border: 'none',
   color: '#DDB071',
-  background: 'none',
+  background: 'transparent',
   fontFamily: 'Inter',
   cursor: 'pointer',
+  '&.right':{
+    top: 3,
+    right: 3,
+    position: 'absolute',
+  },
+  '&.left':{
+    top: 3,
+    left: 3,
+    position: 'relative',
+  },
   '&:hover': {
     textDecoration: 'underline'
   },

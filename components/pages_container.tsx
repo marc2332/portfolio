@@ -5,9 +5,10 @@ const PagesContainer = styled('div', {
     height: '100vh',
     overflow: 'auto',
     flex: 1,
-    transition: 'opacity 1s ease-in-out',
+    transition: 'opacity 0.5s ease-in-out',
     '&.hidden': {
-        transition: '0.05s ease-in-out',
+        display: 'block',
+        transition: '0.03s ease-in-out',
         opacity: 0
     }
 })
