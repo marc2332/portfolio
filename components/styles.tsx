@@ -140,3 +140,17 @@ export const AppContainer = styled('div', {
   height: '100%',
   width: '100%'
 })
+
+
+export const PagesContainer = styled('div', {
+  background: '#181818',
+  height: '100vh',
+  overflow: 'auto',
+  flex: 1,
+  transition: 'opacity 0.5s ease-in-out',
+  '&.hidden': {
+      display: 'block',
+      transition: '0.03s ease-in-out',
+      opacity: 0
+  }
+})

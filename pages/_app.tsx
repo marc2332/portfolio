@@ -1,11 +1,10 @@
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
-import PagesContainer from '../components/pages_container';
 import SideBar from '../components/sidebar';
 import { isMobile } from 'react-device-detect';
-import './global.css'
-import { AppContainer, MenuButton } from '../components/styles';
+import { AppContainer, MenuButton, PagesContainer } from '../components/styles';
 import Loader from '../components/loader';
+import './global.css'
 
 export default function MyApp({ Component, pageProps }) {
 
