@@ -17,9 +17,9 @@ export default function MyApp({ Component, pageProps }) {
       setMenu(false);
     }
 
-    window.addEventListener('load', () => {
+    setTimeout(() => {
       setLoaded(true)
-    })
+    }, 100)
 
   }, [])
 
