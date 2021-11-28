@@ -14,7 +14,7 @@ export default function Home() {
             /about
           </SubTitle>
           <Text>
-            I am a spanish programming student. I like decentralized apps, cryptos and to learn new things as much I can, everyday. I am currently digging into Rust 🦀, Flutter 🐦 and Python 🐍 😄, but I am already used to JavaScript, TypeScript, NodeJS and it’s ecosystem.
+            I am a Spanish software developer student. I like decentralized apps, cryptos and to learn new things as much I can, everyday. I am currently digging into Rust 🦀, Flutter 🐦 and Python 🐍 😄, but I am already used to JavaScript, TypeScript, NodeJS and it’s ecosystem.
           </Text>
           <SmallTitle>
             Contact
