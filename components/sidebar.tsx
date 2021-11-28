@@ -20,7 +20,6 @@ const SideBarContainer = styled('div', {
     background: '#282828',
     padding: 40,
     width: '280px',
-    color: 'black',
     display: 'inline-block',
     fontWeight: 'bold',
     marginLeft: 0,

@@ -8,7 +8,7 @@ import matter from 'gray-matter';
 import ReactMarkdown from 'react-markdown';
 import 'highlight.js/styles/base16/gruvbox-dark-hard.css'
 
-export default function Post({ title, content }) {
+export default function Post({ content, data: { title, date } }) {
   return (
     <>
       <Head>
@@ -17,6 +17,9 @@ export default function Post({ title, content }) {
       <WiderContainer>
         <PostContainer>
           <h1>{title}</h1>
+          <i>{date}</i>
+          <br/>
+          <br/>
           <ReactMarkdown plugins={[highlight]}>{content}</ReactMarkdown>
         </PostContainer>
       </WiderContainer>
@@ -29,7 +32,7 @@ export async function getStaticProps({ params: { slug } }) {
 
   return {
     props: {
-      ...data,
+      data,
       content
     }
   }

@@ -69,11 +69,6 @@ export const TextLinkAlternative = styled('a', {
   textDecoration: 'underline'
 })
 
-export const MobileMessage = styled('p', {
-  color: 'white',
-  fontSize: 15
-})
-
 export const List = styled('ul', {
   listStyle: 'none',
   margin: 0,
@@ -104,6 +99,9 @@ export const PostContainer = styled('div', {
   fontFamily: 'Arbutus Slab',
   '@media (max-width: 600px)':{
     width: '100%',
+  },
+  '& > i ':{
+    textDecoration: 'underline'
   },
   '& *:not(h1,h2,h3,h4,h5,span)':{
     lineHeight: '160%',

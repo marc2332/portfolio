@@ -27,18 +27,17 @@ export default function MyApp({ Component, pageProps }) {
     setMenu(!isMenuHidden)
   }
 
-
-  function getMenuButton(position: string) {
-    return <MenuButton className={position} onClick={toggleMenu}>{isMenuHidden ? '->' : '<-'} menu</MenuButton>
-  }
-
   return (
     <AppContainer>
       {isLoaded ? (
         <>
-          <SideBar className={isMenuHidden && 'hidden'} onLinkTapped={() => isMobile && setMenu(true)} Button={() => getMenuButton('right')} />
+          <SideBar
+            className={isMenuHidden && 'hidden'}
+            onLinkTapped={() => isMobile && setMenu(true)}
+            Button={() => <MenuButton className="right" onClick={toggleMenu}>{'<-'} menu</MenuButton>}
+          />
           <PagesContainer className={!isMenuHidden && isMobile && 'hidden'}>
-            {getMenuButton('left')}
+            <MenuButton className="left" onClick={toggleMenu}>{isMenuHidden ? '->' : '<-'} menu</MenuButton>
             <Component {...pageProps} />
           </PagesContainer>
         </>
