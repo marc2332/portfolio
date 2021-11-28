@@ -13,14 +13,14 @@ export const Title = styled('h1', {
   color: '#E0D5AD',
   fontSize: 50,
   width: 50,
-  paddingLeft: 40,
   display: 'inline-block',
-  fontWeight: 'bold'
+  fontWeight: 'bold',
 });
 
 export const SubTitle = styled('h1', {
   color: '#DDB071',
-  fontWeight: 'bold'
+  fontWeight: 'bold',
+  margin: 0
 });
 
 export const InlineText = styled('p', {
@@ -119,7 +119,7 @@ export const MenuButton = styled('button', {
   cursor: 'pointer',
   '&.right':{
     top: 3,
-    right: 3,
+    right: 15,
     position: 'absolute',
   },
   '&.left':{
