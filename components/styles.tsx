@@ -124,6 +124,9 @@ export const MenuButton = styled('button', {
   cursor: 'pointer',
   '&:hover': {
     textDecoration: 'underline'
+  },
+  '@media (max-width: 600px)':{
+    fontSize: 15
   }
 })
 
