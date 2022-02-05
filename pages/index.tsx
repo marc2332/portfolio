@@ -43,7 +43,7 @@ export default function Home() {
               <TextLinkAlternative target="_blank" href="https://github.com/marc2332/sardana-jupyter"> {'->'} 💃 Sardana-Jupyter</TextLinkAlternative>
             </ListLink>
             <ListLink>
-              <TextLinkAlternative target="_blank" href="https://github.com/marc2332/solana-mobile-wallet"> {'->'} 💳 Solana Mobile Wallet</TextLinkAlternative>
+              <TextLinkAlternative target="_blank" href="https://github.com/marc2332/solana-mobile-wallet"> {'->'} 💳 Reactor Wallet for Solana</TextLinkAlternative>
             </ListLink>
             <ListLink>
               <TextLinkAlternative target="_blank" href="https://github.com/marc2332/rust_blockchain"> {'->'} 🦀 Rust blockchain network</TextLinkAlternative>
