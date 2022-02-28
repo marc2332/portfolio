@@ -10,9 +10,9 @@ function ActiveLink({ children, href, onClick }) {
     const isActive = href === '/' ? router.asPath === href : router.asPath.startsWith(href);
 
     return (
-        <div className={sidebarStyles.sidebarLink +" "+ (isActive && sidebarStyles.active)} onClick={onClick}>
+        <li className={sidebarStyles.sidebarLink +" "+ (isActive && sidebarStyles.active)} onClick={onClick}>
             <Link href={href}>{children}</Link>
-        </div>
+        </li>
     )
 }
 

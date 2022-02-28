@@ -54,6 +54,7 @@
 
 .sidebar ul {
     padding: 0;
+    list-style: none;
 }
 
 
@@ -64,25 +65,26 @@
    }
 }
 
-div.sidebarLink {
+li.sidebarLink {
     font-size: 20px;
     margin: 7px 0px;
     white-space: nowrap;
 }
 
-div.sidebarLink:hover {
-    text-decoration: underline
+li.sidebarLink:hover {
+    text-decoration: underline;
+    text-decoration-color: #82B071;
 }
 
-div.sidebarLink.active > a {
+li.sidebarLink.active > a {
     padding-left: 0;
 }
 
-div.sidebarLink.active > a:before {
+li.sidebarLink.active > a:before {
     content: '->';
 }
 
-div.sidebarLink > a {
+li.sidebarLink > a {
     text-decoration: none;
     color: #82B071;
     padding-left: 19px;
