@@ -1,10 +1,10 @@
 import Head from 'next/head'
-import { PostCard, WiderContainer } from '../components/styles'
 import React from 'react';
 import matter from 'gray-matter';
 import fs from 'fs'
 import path from 'path'
 import Link from 'next/link';
+import styles from '../components/styles.module.css'
 
 export default function Blog({ posts }) {
   return (
@@ -12,22 +12,22 @@ export default function Blog({ posts }) {
       <Head>
         <title>Blog | Marc Espín</title>
       </Head>
-      <WiderContainer>
+      <div className={styles.widerContainer}>
         <div>
           {posts.map(({ data: { title, date }, slug }) => {
             return (
-              <PostCard key={title}>
+              <div className={styles.postCard} key={title}>
                 <Link href={`/blog/${slug}`}>
                   <div>
                     <h1>{title}</h1>
                     <i>{date}</i>
                   </div>
                 </Link>
-              </PostCard>
+              </div>
             )
           })}
         </div>
-      </WiderContainer>
+      </div>
     </div>
   )
 }

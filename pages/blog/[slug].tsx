@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import { WiderContainer, PostContainer } from '../../components/styles'
 import React from 'react';
 import fs from 'fs'
 import path from 'path'
@@ -7,6 +6,7 @@ import highlight from 'remark-highlight.js'
 import matter from 'gray-matter';
 import ReactMarkdown from 'react-markdown';
 import 'highlight.js/styles/base16/gruvbox-dark-hard.css'
+import styles from '../../components/styles.module.css'
 
 export default function Post({ content, data: { title, date } }) {
   return (
@@ -14,15 +14,15 @@ export default function Post({ content, data: { title, date } }) {
       <Head>
         <title>Blog | {title} | Marc Espín</title>
       </Head>
-      <WiderContainer>
-        <PostContainer>
+      <div className={styles.widerContainer}>
+        <div className={styles.postContainer}>
           <h1>{title}</h1>
           <i>{date}</i>
           <br/>
           <br/>
           <ReactMarkdown plugins={[highlight]}>{content}</ReactMarkdown>
-        </PostContainer>
-      </WiderContainer>
+        </div>
+      </div>
     </>
   )
 }

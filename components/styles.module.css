@@ -1,0 +1,177 @@
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+h1.title {
+  color: #E0D5AD;
+  font-size: 50px;
+  width: 50px;
+  display: inline-block;
+  font-weight: bold;
+}
+
+h1.subTitle {
+  color: #DDB071;
+  font-weight: bold;
+  margin: 0;
+}
+
+p.inlineText {
+  display: inline-block;
+  font-size: 15px;
+  color: black;
+  margin-left: 20px;
+}
+
+div.container {
+  display: flex;
+  justify-content: center;
+  padding: 50px 15%;
+  overflow: auto;
+  animation: fadeIn 1s;
+}
+
+@media (max-width: 600px) {
+  div.container {
+    padding: 40px 15px;
+  }
+}
+
+
+div.widerContainer {
+  display: flex;
+  justify-content: center;
+  padding: 50px 5%;
+  overflow: auto;
+  animation: fadeIn 1s;
+  
+}
+
+div.widerContainer {
+  @media (max-width: 600px):{
+    padding: 40px 15px;
+  }
+}
+
+p.text {
+  color: #DDB071;
+  max-width: 800px;
+  line-height: 2;
+}
+
+a.textLink {
+  color: #CF412E;
+  text-decoration: underline;
+}
+
+a.textLinkAlternative {
+  color: #82B071;
+  text-decoration: underline;
+}
+
+ul.list {
+  list-style: none;
+  margin: 0;
+  padding: 5px;
+}
+
+li.listLink {
+  margin: 10px;
+}
+
+h3.smallTitle {
+  color: #DDB071;
+}
+
+div.postCard {
+  margin-bottom: 50px;
+  color: #DDB071;
+  font-family: Arbutus Slab;
+  cursor: pointer;
+}
+
+div.postCard:hover > * {
+    text-decoration: underline
+}
+
+div.postContainer {
+  color: #DDB071;
+  width: 65%;
+  font-family: Arbutus Slab;
+}
+
+div.postContainer > i  {
+  font-weight: bold
+
+}
+
+div.postContainer *:not(h1, h2, h3, h4, h5, span) {
+  line-height: 160%;
+}
+
+@media (max-width: 600px) {
+  div.postContainer {
+    width: 100%;
+  }
+  
+}
+
+
+button.menuButton {
+  padding: 10px;
+  height: 50px;
+  width: 50px;
+  border: none;
+  color: #DDB071;
+  background: transparent;
+  font-family: Inter;
+  cursor: pointer;
+}
+
+button.menuButton.right {
+  top: 3px;
+  right: 15px;
+  position: absolute;
+}
+
+button.menuButton.left {
+  top: 3px;
+  left: 3px;
+  position: relative;
+}
+
+button.menuButton:hover {
+  text-decoration: underline
+}
+
+@media (max-width: 600px) {
+  button.menuButton {
+    font-size: 15px;
+  }
+}
+
+div.appContainer {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+div.pagesContainer {
+  background: #181818;
+  height: 100vh;
+  overflow: auto;
+  flex: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+div.pagesContainer.hidden {
+  display: block;
+  transition: 0.03s ease-in-out;
+  opacity: 0;
+}

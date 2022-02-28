@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SideBar from '../components/sidebar';
 import { isMobile } from 'react-device-detect';
-import { AppContainer, MenuButton, PagesContainer } from '../components/styles';
+import styles from '../components/styles.module.css'
 import './global.css'
 
 export default function MyApp({ Component, pageProps }) {
@@ -19,16 +19,16 @@ export default function MyApp({ Component, pageProps }) {
   }
 
   return (
-    <AppContainer>
+    <div className={styles.appContainer}>
       <SideBar
-        className={isMenuHidden && 'hidden'}
+        isMenuHidden={isMenuHidden}
         onLinkTapped={() => isMobile && setMenu(true)}
-        Button={() => <MenuButton className="right" onClick={toggleMenu}>{'<-'} menu</MenuButton>}
+        Button={() => <button className={styles.menuButton + " " + styles.right} onClick={toggleMenu}>{'<-'} menu</button>}
       />
-      <PagesContainer className={!isMenuHidden && isMobile && 'hidden'}>
-        <MenuButton className="left" onClick={toggleMenu}>{isMenuHidden ? '->' : '<-'} menu</MenuButton>
+      <div className={styles.pagesContainer + " "+(!isMenuHidden && isMobile && styles.hidden )}>
+        <button className={styles.menuButton + " " + styles.left} onClick={toggleMenu}>{isMenuHidden ? '->' : '<-'} menu</button>
         <Component {...pageProps} />
-      </PagesContainer>
-    </AppContainer>
+      </div>
+    </div>
   )
 }
