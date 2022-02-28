@@ -14,7 +14,7 @@ export default function Home() {
             /about
           </SubTitle>
           <Text>
-          I am a spanish software developer student. I like decentralized apps, crypto and learning as many new things as I can everyday. I am currently digging into Rust 🦀, Flutter 🐦 and Python 🐍 😄. I am already proficient in JavaScript, TypeScript, NodeJS and its ecosystem.
+          I am a software developer who tries to learn new things every day. I have maintained (and still) different open source projects. At the moment I am digging into Rust 🦀, Flutter+Dart 🐦, Deno 🦕 and Python 🐍 😄, but also improving my JavaScript/TypeScript frontend/backend knowledge 💪. Cryptocurrencies and dapps 📝 interest me. 
           </Text>
           <SmallTitle>
             Contact
@@ -43,7 +43,7 @@ export default function Home() {
               <TextLinkAlternative target="_blank" href="https://github.com/marc2332/sardana-jupyter"> {'->'} 💃 Sardana-Jupyter</TextLinkAlternative>
             </ListLink>
             <ListLink>
-              <TextLinkAlternative target="_blank" href="https://github.com/marc2332/solana-mobile-wallet"> {'->'} 💳 Solana Mobile Wallet</TextLinkAlternative>
+              <TextLinkAlternative target="_blank" href="https://github.com/marc2332/solana-mobile-wallet"> {'->'} 💳 Reactor Wallet for Solana</TextLinkAlternative>
             </ListLink>
             <ListLink>
               <TextLinkAlternative target="_blank" href="https://github.com/marc2332/rust_blockchain"> {'->'} 🦀 Rust blockchain network</TextLinkAlternative>
