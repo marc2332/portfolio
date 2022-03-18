@@ -40,13 +40,16 @@ export default function Home() {
               <a className={styles.textLinkAlternative} target="_blank" href="https://github.com/Graviton-Code-Editor/Graviton-App"> {'->'} 💻 Graviton Editor</a>
             </li>
             <li className={styles.listLink}>
-              <a className={styles.textLinkAlternative} target="_blank" href="https://github.com/marc2332/sardana-jupyter"> {'->'} 💃 Sardana-Jupyter</a>
+              <a className={styles.textLinkAlternative} target="_blank" href="https://github.com/astrodon/astrodon"> {'->'} 🦕 Astrodon</a>
             </li>
             <li className={styles.listLink}>
               <a className={styles.textLinkAlternative} target="_blank" href="https://github.com/marc2332/solana-mobile-wallet"> {'->'} 💳 Reactor Wallet for Solana</a>
             </li>
             <li className={styles.listLink}>
-              <a className={styles.textLinkAlternative} target="_blank" href="https://github.com/marc2332/rust_blockchain"> {'->'} 🦀 Rust blockchain network</a>
+              <a className={styles.textLinkAlternative} target="_blank" href="https://github.com/marc2332/sardana-jupyter"> {'->'} 💃 Sardana-Jupyter</a>
+            </li>
+            <li className={styles.listLink}>
+              <a className={styles.textLinkAlternative} target="_blank" href="https://github.com/marc2332/rust_blockchain"> {'->'} 🦀 Rust blockchain-based protocol</a>
             </li>
           </ul>
         </div>
