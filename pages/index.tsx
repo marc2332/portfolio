@@ -49,7 +49,10 @@ export default function Home() {
               <a className={styles.textLinkAlternative} target="_blank" href="https://github.com/marc2332/sardana-jupyter"> {'->'} 💃 Sardana-Jupyter</a>
             </li>
             <li className={styles.listLink}>
-              <a className={styles.textLinkAlternative} target="_blank" href="https://github.com/marc2332/rust_blockchain"> {'->'} 🦀 Rust blockchain-based protocol</a>
+              <a className={styles.textLinkAlternative} target="_blank" href="https://github.com/marc2332/vale"> {'->'} 📝 Vale </a>
+            </li>
+            <li className={styles.listLink}>
+              <a className={styles.textLinkAlternative} target="_blank" href="https://github.com/marc2332/rust_blockchain"> {'->'} 🦀 Dummy Rust blockchain-based protocol</a>
             </li>
           </ul>
         </div>
