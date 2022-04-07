@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import SideBar from '../components/sidebar';
+import SideBar from '../components/Sidebar';
 import { isMobile } from 'react-device-detect';
 import styles from '../components/styles.module.css'
 import './global.css'

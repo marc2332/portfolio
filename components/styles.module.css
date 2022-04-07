@@ -37,6 +37,10 @@ div.container {
   animation: fadeIn 1s;
 }
 
+div.container > div {
+  width: 100%;
+}
+
 @media (max-width: 600px) {
   div.container {
     padding: 40px 15px;

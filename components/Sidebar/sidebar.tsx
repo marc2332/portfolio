@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useRouter } from "next/dist/client/router";
 import { isMobile } from "react-device-detect";
 import sidebarStyles from './sidebar.module.css'
-import styles from './styles.module.css'
+import styles from '../styles.module.css'
 
 function ActiveLink({ children, href, onClick }) {
     const router = useRouter()
