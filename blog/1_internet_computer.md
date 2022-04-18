@@ -49,4 +49,4 @@ Let's not even talk about their [ICO](https://coincodex.com/ico/internet-compute
 
 The author of this post does not own any ICP.
 
-You can also read this post in Dev.to
+You can also read this post in [dev.to](https://dev.to/mkenzo_8/is-internet-computer-icp-really-decentralized-1boe)
