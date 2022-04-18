@@ -29,7 +29,7 @@ There is also this funny detail: if we hover over one of the blue circles in the
 
 Oh yeah, I almost forgot one thing, you cannot run your own ICP Node either, Indeed, you can't. Don't believe me? Go again to [ICP Website](https://internetcomputer.org/) and click on the menu "Run a Node", that will lead you to this [form](https://internet-computer.typeform.com/to/IWl3iClx)... and the first you see is this message:
 
-![Hovered Datacenter](../blog/internet_computer/1_ica_run_node.png)
+![ICA Run Node form](../blog/internet_computer/1_ica_run_node.png)
 
 Wow.
 
