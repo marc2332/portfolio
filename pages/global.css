@@ -14,19 +14,6 @@ body, html {
     -webkit-tap-highlight-color: transparent;
 }
 
-.loader {
-    background: transparent;
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #E0D5AD
-}
-
 *::selection {
     background: rgba(200, 200, 200,0.3);
 }
