@@ -119,6 +119,23 @@ div.postContainer *:not(h1, h2, h3, h4, h5, span) {
   line-height: 160%;
 }
 
+div.postContainer > pre > code {
+  white-space: pre-wrap; 
+  font-weight: bold;
+  color: #E3CFB3;
+}
+
+div.postContainer a {
+  color: #CF412E;
+  text-decoration: underline;
+}
+
+div.postContainer img {
+  display: block;
+  margin: 5px auto;
+  border-radius: 5px;
+}
+
 @media (max-width: 600px) {
   div.postContainer {
     width: 100%;

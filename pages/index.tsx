@@ -53,7 +53,7 @@ export default function Home() {
             /about
           </h1>
           <p className={styles.text}>
-          I am a software developer who tries to learn new things every day. I have maintained (and still) different open source projects. At the moment I am digging into Rust 🦀, Flutter+Dart 🐦, Deno 🦕 and Python 🐍 😄, but also improving my JavaScript/TypeScript frontend/backend knowledge 💪. Cryptocurrencies and dapps 📝 interest me. 
+          I am a Software Developer trying to learn new things every day. I have maintained (and still) different open source projects. At the moment I am digging into Rust 🦀, Flutter+Dart 🐦, Deno 🦕 and Python 🐍 😄, but also improving my JavaScript/TypeScript frontend/backend knowledge 💪. Cryptocurrencies and dapps 📝 interest me. 
           </p>
           <h3 className={styles.smallTitle}>
             Contact
@@ -76,7 +76,7 @@ export default function Home() {
           </h3>
           <ChipList>
             {projects.map((project, projectIndex) => {
-              return <Chip value={project.name} selected={projectSelected == projectIndex} onSelected={() => setSelectedProject(projectIndex)}/>
+              return <Chip  key={project.name} value={project.name} selected={projectSelected == projectIndex} onSelected={() => setSelectedProject(projectIndex)}/>
             })}
           </ChipList>
           <Card {...projects[projectSelected]}/>
