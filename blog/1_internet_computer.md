@@ -35,7 +35,7 @@ There is also this interesting detail, if we hover over one of the blue circles 
 
 ### Can I run my own node?
 
-Compared to other blockchains, you are not allowed to run your own ICP Node without the permission of the ICA (Internet Comouter Association). You can verify this yourself by going to [ICP Website](https://internetcomputer.org/) and click on the menu "Run a Node", that will lead you to this [form](https://internet-computer.typeform.com/to/IWl3iClx), you will see this message:
+Compared to other blockchains, you are not allowed to run your own ICP Node without the permission of the ICA (Internet Computer Association). You can verify this yourself by going to [ICP Website](https://internetcomputer.org/) and click on the menu "Run a Node", that will lead you to this [form](https://internet-computer.typeform.com/to/IWl3iClx), you will see this message:
 
 ![ICA Run Node form](../blog/internet_computer/1_ica_run_node.png)
 
