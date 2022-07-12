@@ -67,6 +67,11 @@ export default function Home() {
               </a>
             </li>
             <li className={styles.listLink}>
+              <a className={styles.textLink} target="_blank" href="https://www.linkedin.com/in/marc-esp%C3%ADn-sanz-79575a187/">
+                {'->'} Linkedin
+              </a>
+            </li>
+            <li className={styles.listLink}>
               <a className={styles.textLink} href="mailto:mespinsanz@gmail.com">
                 {'->'} mespinsanz@gmail.com
               </a>
