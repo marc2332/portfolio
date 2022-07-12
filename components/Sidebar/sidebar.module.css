@@ -11,6 +11,17 @@
     align-items: flex-start;
 }
 
+.sidebar > div > button {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .sidebar > div >button {
+        display: block;
+    }
+}
+
+
 .sidebar > div {
     margin-top: 40px;
     margin-right: 30px;

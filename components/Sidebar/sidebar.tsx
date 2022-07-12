@@ -1,7 +1,6 @@
 import React, { PropsWithChildren, ReactElement } from "react";
 import Link from 'next/link'
 import { useRouter } from "next/dist/client/router";
-import { isMobile } from "react-device-detect";
 import sidebarStyles from './sidebar.module.css'
 import styles from '../styles.module.css'
 
@@ -26,7 +25,7 @@ export default function SideBar({ isMenuHidden, onLinkTapped, Button }: SideBarO
     return (
         <div className={sidebarStyles.sidebar + " "+(isMenuHidden ?  sidebarStyles.hidden : "")}>
             <div>
-                {isMobile && <Button />}
+                <Button />
                 <h1 className={styles.title}>
                     Marc
                     Espín
