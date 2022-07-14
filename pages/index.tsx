@@ -53,7 +53,7 @@ export default function Home() {
             /about
           </h1>
           <p className={styles.text}>
-            I am a Software Developer trying to learn new things every day. I have maintained (and still) different open source projects. At the moment I am digging into Rust 🦀, Flutter+Dart 🐦, Deno 🦕 and Python 🐍 😄, but also improving my JavaScript/TypeScript frontend/backend knowledge 💪.
+            I am a Software Developer trying to learn new things every day. I have maintained (and still) different open source projects. At the moment I am focused on Rust 🦀, React ⚛️, TypeScript 💙 and Deno 🦕.
             <br/><br/>
             <b> ⚠️ Pss</b>! I am looking for a job! You can email me at <a  className={styles.textLink} href="mailto:mespinsanz@gmail.com">mespinsanz@gmail.com</a> :-)
           </p>
