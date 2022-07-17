@@ -30,11 +30,6 @@ const projects = [
     name: "📝 Vale",
     link: "https://github.com/marc2332/vale",
     description: "A simple static documentation generator, designed to be simple, beatiful and fast. Made in Deno, but you can use it for any other language. Inspired by Deno Manual and mdBook."
-  },
-  {
-    name: "🦀 Experimental blockchain-based protocol",
-    link: "https://github.com/marc2332/rust_blockchain",
-    description: "Dummy and experimental blockchain-based descentralized protocol I made to learn more about rust, cryptography, blockchain and similar topics. It's definitely contains security holes, and bugs. It's not complete, it only served as experiment."
   }
 ]
 
