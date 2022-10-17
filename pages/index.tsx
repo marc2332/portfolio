@@ -7,6 +7,11 @@ import styles from '../components/styles.module.css'
 
 const projects = [
   {
+    name: " 🦀 Freya",
+    link: "https://github.com/marc2332/freya",
+    description: "Cross-platform GUI library for Rust powered by Skia and Dioxus."
+  },
+  {
     name: " 💻 Graviton Editor",
     link: "https://github.com/Graviton-Code-Editor/Graviton-App",
     description: "Cross-platform code editor designed with a simple and minimal GUI, it runs in Windows, MacOS, Linux or even browsers."
@@ -17,9 +22,9 @@ const projects = [
     description: "Cross-platform desktop webview-based app framework for Deno, powered by Tauri. Designed to be as lightweight and fast as possible, while keeping all the goods that comes with Deno."
   },
   {
-    name: "💳 Reactor Wallet for Solana",
+    name: "💳 Reactor Wallet",
     link: "https://github.com/marc2332/solana-mobile-wallet",
-    description: "Experimental cross-platform wallet for Solana Blockchain made in Flutter, you can transfer and SOL, tokens or even NFTs. You can also create or scan Solana Pay transactions, you can watch over any wallet, useful if you don't want to import the seedphrase, etc..."
+    description: "Experimental cross-platform wallet for Solana, made in Flutter."
   },
   {
     name: "💃 Sardana-Jupyter",
