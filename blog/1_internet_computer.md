@@ -15,7 +15,7 @@ The Internet Computer is the fastest and most scalable general-purpose blockchai
 
 You can learn more in [Dfinity Website](https://dfinity.org/howitworks).
 
-## Is it trully decentralized?
+## Is it truly decentralized?
 
 The team behind Dfinity made this nice [ICP Explorer](https://dashboard.internetcomputer.org/) that shows the current state of the ICP blockchain, consensus and nodes, among other things.
 
