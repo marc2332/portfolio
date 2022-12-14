@@ -100,6 +100,10 @@ div.postCard {
   cursor: pointer;
 }
 
+div.postCard a {
+  color: unset;
+}
+
 div.postCard:hover > * {
     text-decoration: underline
 }
@@ -197,3 +201,4 @@ div.pagesContainer.hidden {
   transition: 0.03s ease-in-out;
   opacity: 0;
 }
+
