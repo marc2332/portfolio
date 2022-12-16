@@ -20,7 +20,7 @@ export default function Post({ content, data: { title, date } }) {
           <i>{date}</i>
           <br/>
           <br/>
-          <ReactMarkdown plugins={[highlight]}>{content}</ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[highlight]}>{content}</ReactMarkdown>
         </div>
       </div>
     </>
