@@ -3,10 +3,10 @@ title: Introduction to my blog
 date: 28 November of 2021
 ---
 
-Hello, my name is Marc. 
+Hello, my name is Marc.
 
-This is my new blog. It will be mainly focused on programming ( and probably cryptocurrencies ).
-
+This is my new blog. It will be mainly focused on programming ( and probably
+cryptocurrencies ).
 
 ```rust
 mod utils {
