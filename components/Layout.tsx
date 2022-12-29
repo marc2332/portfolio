@@ -11,5 +11,6 @@ export const Layout = styled.div`
     }
     @media only screen and (max-width: 600px) {
         width:  85%;
+        padding: 15px 15px 40px 15px;
     }
 `;
