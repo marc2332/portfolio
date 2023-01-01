@@ -8,6 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@fontsource/inter": "^4.5.14",
+    "@fontsource/pt-serif": "^4.5.11",
     "gray-matter": "^4.0.3",
     "next": "^13.0.6",
     "process": "^0.11.10",
@@ -17,6 +19,7 @@
     "react-markdown": "^8.0.4",
     "remark-highlight.js": "^7.0.1",
     "stitches": "^1.2.11",
+    "styled-components": "^5.3.6",
     "unified": "^10.1.2"
   },
   "devDependencies": {

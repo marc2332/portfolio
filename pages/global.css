@@ -3,11 +3,16 @@ body, html {
     margin: 0;
     background: #181818;
     font-family: 'Inter', sans-serif;
-    overflow: hidden;
+    color: #ddb071;
 }
 
 #__next {
     display: flex;
+}
+
+img {
+    max-width: 100%;
+    image-rendering: -moz-crisp-edges;
 }
 
 * {
