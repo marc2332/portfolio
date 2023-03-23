@@ -11,7 +11,7 @@ export default function Card({ description, link }: CardOptions) {
     <div>
       <p>{description}</p>
       <LinkGreenVariant target="_blank" href={link}>
-        Project info
+        Source code
       </LinkGreenVariant>
     </div>
   );

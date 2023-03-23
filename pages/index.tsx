@@ -15,25 +15,19 @@ const projects = [
   {
     name: " 💻 Graviton Editor",
     link: "https://github.com/Graviton-Code-Editor/Graviton-App",
-    description: "Cross-platform minimal code editor.",
+    description: "Cross-platform minimal code editor made in Rust using Tauri.",
+  },
+  {
+    name: "📝 Freya Editor",
+    link: "https://github.com/marc2332/freya-editor",
+    description:
+      "Very minimal and experimental code editor using Freya.",
   },
   {
     name: " 🦕 Astrodon",
     link: "https://github.com/astrodon/astrodon",
     description:
       "Cross-platform desktop webview-based app framework for Deno, powered by Tauri.",
-  },
-  {
-    name: "💳 Reactor Wallet",
-    link: "https://github.com/marc2332/solana-mobile-wallet",
-    description:
-      "Experimental cross-platform wallet for Solana, made in Flutter.",
-  },
-  {
-    name: "💃 Sardana-Jupyter",
-    link: "https://github.com/marc2332/sardana-jupyter",
-    description:
-      "Run Sardana (a SCADA control system made in ALBA Synchrotron) in Jupyter Lab.",
   },
 ];
 
@@ -50,13 +44,24 @@ export default function Home() {
           <b>Marc</b> Espín
         </h1>
         <p>
-          I am a Software Developer trying to learn new things every day. I like
-          to work on open source projects.
+          Web frontend ⚛️ developer and working on Rust projects 🦀 in my spare time.
           <br />
-          I am an experienced React ⚛️ & TypeScript 💙 developer.
-          <br />
-          At the moment I am working on Rust 🦀 projects in my free time.
+          I like to help and contribute to open source projects. I even have a few of my own, like <Link target="_blank" href="https://github.com/marc2332/freya">Freya</Link>, a native GUI library for Rust powered by Skia and Dioxus, or also <Link target="_blank" href="https://github.com/Graviton-Code-Editor/Graviton-App">Graviton</Link>, a code editor made using Tauri.
         </p>
+        <h3>
+          Projects
+        </h3>
+        {projects.map((project, projectIndex) => {
+          return (
+            <Chip
+              key={project.name}
+              value={project.name}
+              selected={projectSelected == projectIndex}
+              onSelected={() => setSelectedProject(projectIndex)}
+            />
+          );
+        })}
+        <Card {...projects[projectSelected]} />
         <h3>
           Contact
         </h3>
@@ -80,20 +85,6 @@ export default function Home() {
             </Link>
           </li>
         </ul>
-        <h3>
-          Projects
-        </h3>
-        {projects.map((project, projectIndex) => {
-          return (
-            <Chip
-              key={project.name}
-              value={project.name}
-              selected={projectSelected == projectIndex}
-              onSelected={() => setSelectedProject(projectIndex)}
-            />
-          );
-        })}
-        <Card {...projects[projectSelected]} />
       </div>
     </NormalContainer>
   );
