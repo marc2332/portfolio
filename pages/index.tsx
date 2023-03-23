@@ -44,7 +44,7 @@ export default function Home() {
           <b>Marc</b> Espín
         </h1>
         <p>
-          Web frontend developer ⚛️ by profession and working on Rust projects 🦀 in my spare time.
+          Web frontend ⚛️ developer and working on Rust projects 🦀 in my spare time.
           <br />
           I like to help and contribute to open source projects. I even have a few of my own, like <Link target="_blank" href="https://github.com/marc2332/freya">Freya</Link>, a native GUI library for Rust powered by Skia and Dioxus, or also <Link target="_blank" href="https://github.com/Graviton-Code-Editor/Graviton-App">Graviton</Link>, a code editor made using Tauri.
         </p>
