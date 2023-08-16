@@ -8,8 +8,8 @@ interface ChipOptions {
 }
 
 const ChipContainer = styled.button<{ selected: boolean }>`
-    padding: 4px 8px;
-    border-radius: 15px;
+    padding: 8px 12px;
+    border-radius: 50px;
     margin: 3px;
     transition: 0.15s;
     cursor: pointer;

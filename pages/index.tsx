@@ -13,21 +13,21 @@ const projects = [
       "Cross-platform GUI library for Rust powered by Skia and Dioxus.",
   },
   {
-    name: " 💻 Graviton Editor",
-    link: "https://github.com/Graviton-Code-Editor/Graviton-App",
-    description: "Cross-platform minimal code editor made in Rust using Tauri.",
-  },
-  {
     name: "📝 Freya Editor",
     link: "https://github.com/marc2332/freya-editor",
     description:
-      "Very minimal and experimental code editor using Freya.",
+      "Cross-platform code editor made entirely in Rust using Freya.",
   },
   {
-    name: " 🦕 Astrodon",
-    link: "https://github.com/astrodon/astrodon",
+    name: " 🦑 ghboard",
+    link: "https://github.com/marc2332/ghboard",
     description:
-      "Cross-platform desktop webview-based app framework for Deno, powered by Tauri.",
+      "Github Dashboard entirely written in Rust with Dioxus SSR.",
+  },
+  {
+    name: " 💻 Graviton Editor",
+    link: "https://github.com/Graviton-Code-Editor/Graviton-App",
+    description: "Cross-platform minimal code editor made in Rust using Tauri.",
   },
 ];
 
@@ -44,9 +44,9 @@ export default function Home() {
           <b>Marc</b> Espín
         </h1>
         <p>
-          Web frontend ⚛️ developer and working on Rust projects 🦀 in my spare time.
+          Web frontend ⚛️ developer but working on Rust projects 🦀 in my spare time.
           <br />
-          I like to help and contribute to open source projects. I even have a few of my own, like <Link target="_blank" href="https://github.com/marc2332/freya">Freya</Link>, a native GUI library for Rust powered by Skia and Dioxus, or also <Link target="_blank" href="https://github.com/Graviton-Code-Editor/Graviton-App">Graviton</Link>, a code editor made using Tauri.
+          I like to help and contribute to open source projects. I even have a few of my own, like <Link target="_blank" href="https://github.com/marc2332/freya">Freya</Link>, a native GUI library for Rust powered by Skia and Dioxus, or also <Link target="_blank" href="https://github.com/marc2332/freya-editor">freya-editor</Link>, a cross-platform code editor made using Freya.
         </p>
         <h3>
           Projects
@@ -62,6 +62,7 @@ export default function Home() {
           );
         })}
         <Card {...projects[projectSelected]} />
+        <p>For more other projects see my <Link href="https://github.com/marc2332/">Github</Link>.</p>
         <h3>
           Contact
         </h3>
@@ -82,6 +83,11 @@ export default function Home() {
           <li>
             <Link href="mailto:mespinsanz@gmail.com">
               {"->"} mespinsanz@gmail.com
+            </Link>
+          </li>
+          <li>
+            <Link href="https://twitter.com/mkenzo_8">
+              {"->"} Twitter
             </Link>
           </li>
         </ul>
