@@ -49,7 +49,7 @@ export default function Home() {
             </CircularCard>
           </div>
         </div>
-        <p className="flex-1 leading-6 sm:leading-10 float-left mb-6 sm:mb-0">
+        <p className="flex-1 leading-8 sm:leading-10 float-left mb-6 sm:mb-0">
           <Image
             className="rounded-full float-right"
             alt="Profile Picture"
