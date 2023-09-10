@@ -28,7 +28,7 @@ export default function Home() {
         <title>Marc Espín</title>
       </Head>
       <div className="mb-4 sm:flex">
-        <div className="sm:w-38 sm:mr-2 flex gap-4 sm:gap-0 mb-4 sm:m-0">
+        <div className="sm:w-38 sm:mr-2 flex gap-4 sm:gap-0 mb-4 sm:m-0 justify-center">
           <div className="sm:mr-4 sm:mt-10 flex flex-row sm:flex-col gap-4 sm:gap-0">
             <CircularCard url="https://github.com/marc2332">
               <AiOutlineGithub size={25} />
@@ -57,7 +57,7 @@ export default function Home() {
             width={160}
             src={PFP}
           />
-          Frontend developer but working on Rust 🦀 projects in my spare time.
+          Frontend 🖼️ developer but working on Rust 🦀 projects in my spare time.
           <br />
           I like to help and contribute to open source projects. I even have a
           few of my own, like{" "}
