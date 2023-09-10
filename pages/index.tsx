@@ -10,17 +10,14 @@ import Image from "next/image";
 import PFP from "../public/pfp.png";
 
 function timeInSpain(): Date {
-  var date = new Date();
+  const date = new Date();
 
-  // convert to milliseconds, add local time zone offset and get UTC time in milliseconds
-  var utcTime = date.getTime() + (date.getTimezoneOffset() * 60000);
+  const utcTime = date.getTime() + (date.getTimezoneOffset() * 60000);
 
-  // time offset for New Zealand is +12
-  var timeOffset = 2;
+  // Spain is UTC+02:00
+  const timeOffset = 2;
 
-  // create new Date object for a different timezone using supplied its GMT offset.
-  var NewZealandTime = new Date(utcTime + (3600000 * timeOffset));
-  return NewZealandTime;
+  return new Date(utcTime + (3600000 * timeOffset));
 }
 
 export default function Home() {
