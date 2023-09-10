@@ -8,6 +8,7 @@ import { BiLogoLinkedin } from "react-icons/bi";
 import { BsMailbox } from "react-icons/bs";
 import Image from "next/image";
 import PFP from "../public/pfp.png";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
 function normalizeTime(num: number): string {
   if (num < 10) {
@@ -30,7 +31,63 @@ function timeInSpain(): string {
   return `${normalizeTime(now.getHours())}:${normalizeTime(now.getMinutes())}`;
 }
 
-export default function Home() {
+const PROJECTS = [
+  {
+    name: "Freya",
+    repo: "marc2332/freya",
+    description:
+      "Native GUI library for Rust powered by Skia and Dioxus.",
+  },
+  {
+    name: "dioxus-query",
+    repo: "marc2332/dioxus-query",
+    description:
+      "State management for Dioxus apps.",
+  },
+  {
+    name: "Freya Editor",
+    repo: "marc2332/freya-editor",
+    description:
+      "Code editor made entirely in Rust using Freya.",
+  },
+  {
+    name: "ghboard",
+    repo: "marc2332/ghboard",
+    description:
+      "GitHub Dashboard made in Rust With Dioxus.",
+  },
+  {
+    name: "Graviton Editor",
+    repo: "Graviton-Code-Editor/Graviton-App",
+    description: "Minimal code editor made in Rust using Tauri.",
+  },
+];
+
+export const getServerSideProps: GetServerSideProps<{
+  stars: number[]
+}> = async ({ res }) => {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=3600, stale-while-revalidate=59'
+  )
+
+  const stars = await Promise.all(PROJECTS.map(async (project) => {
+    try {
+      const res = await fetch(`https://api.github.com/repos/${project.repo}`, {
+        headers: {
+          Authorization: `Bearer ${process.env["GITHUB_TOKEN"]}`
+        }
+      })
+      const repo = await res.json()
+      return repo.stargazers_count
+    } catch(_){
+      return 0
+    }
+  }))
+  return { props: { stars } }
+}
+
+export default function Home({ stars }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const nowInSpain = timeInSpain();
   return (
     <>
@@ -90,36 +147,11 @@ export default function Home() {
       </div>
       <div className="mb-4">
         <h2 className="text-2xl mb-4 sm:ml-40">Projects</h2>
-        <Card
-          title="Freya"
-          description="Native GUI library for Rust powered by Skia and Dioxus."
-          info={"643 stars ⭐"}
-          url="https://github.com/marc2332/freya"
-        />
-        <Card
-          title="dioxus-query"
-          description="State management for Dioxus apps."
-          info={"15 stars ⭐"}
-          url="https://github.com/marc2332/dioxus-query"
-        />
-        <Card
-          title="ghboard"
-          description="GitHub Dashboard made in Rust With Dioxus."
-          info={"45 stars ⭐"}
-          url="https://github.com/marc2332/ghboard"
-        />
-        <Card
-          title="Graviton Editor"
-          description="Minimal code editor made in Rust using Tauri."
-          info={"1077 stars ⭐"}
-          url="https://github.com/Graviton-Code-Editor/Graviton-App"
-        />
-        <Card
-          title="freya-editor"
-          description="Code editor made entirely in Rust using Freya"
-          info={"52 stars ⭐"}
-          url="https://github.com/marc2332/freya-editor"
-        />
+        {PROJECTS.map((project, i) => {
+          return (
+            <Card key={project.name} title={project.name} description={project.description} info={`${stars[i]} stars ⭐`} url={`https://github.com/${project.repo}`}/>
+          )
+        })}
       </div>
       <div className="mb-4">
         <h2 className="text-2xl mb-4 sm:ml-40">Experience</h2>
