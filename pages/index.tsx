@@ -9,7 +9,15 @@ import { BsMailbox } from "react-icons/bs";
 import Image from "next/image";
 import PFP from "../public/pfp.png";
 
-function timeInSpain(): Date {
+function normalizeTime(num: number): string {
+  if (num < 10) {
+    return `0${num}`;
+  } else {
+    return num.toString();
+  }
+}
+
+function timeInSpain(): string {
   const date = new Date();
 
   const utcTime = date.getTime() + (date.getTimezoneOffset() * 60000);
@@ -17,7 +25,9 @@ function timeInSpain(): Date {
   // Spain is UTC+02:00
   const timeOffset = 2;
 
-  return new Date(utcTime + (3600000 * timeOffset));
+  const now = new Date(utcTime + (3600000 * timeOffset));
+
+  return `${normalizeTime(now.getHours())}:${normalizeTime(now.getMinutes())}`;
 }
 
 export default function Home() {
@@ -45,7 +55,7 @@ export default function Home() {
               <BsMailbox size={25} />
             </CircularCard>
             <CircularCard>
-              {`${nowInSpain.getHours()}:${nowInSpain.getMinutes()}`}
+              {`${nowInSpain}`}
             </CircularCard>
           </div>
         </div>
