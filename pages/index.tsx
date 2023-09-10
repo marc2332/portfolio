@@ -108,7 +108,7 @@ export default function Home() {
           title="freya-editor"
           description="Code editor made entirely in Rust using Freya"
           info={"52 stars ⭐"}
-          url="https://github.com/marc2332/freya-editr"
+          url="https://github.com/marc2332/freya-editor"
         />
       </div>
       <div className="mb-4">
