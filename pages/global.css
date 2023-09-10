@@ -1,24 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-body, html {
-    margin: 0;
-    background: #181818;
-    font-family: 'Inter', sans-serif;
-    color: #ddb071;
+body,
+html {
+  margin: 0;
+  background: #181818;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: white;
 }
 
 #__next {
-    display: flex;
+  display: flex;
 }
 
 img {
-    max-width: 100%;
-    image-rendering: -moz-crisp-edges;
+  max-width: 100%;
+  image-rendering: -moz-crisp-edges;
 }
 
 * {
-    -webkit-tap-highlight-color: transparent;
-}
-
-*::selection {
-    background: rgba(200, 200, 200,0.3);
+  -webkit-tap-highlight-color: transparent;
 }

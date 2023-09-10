@@ -1,16 +1,9 @@
-import styled from "styled-components";
+import { PropsWithChildren } from "react";
 
-export const Layout = styled.div`
-    margin: 0 auto;
-    width: 50%;
-    @media only screen and (max-width: 1300px) {
-        width: 65%;
-    }
-    @media only screen and (max-width: 1000px) {
-        width:  75%;
-    }
-    @media only screen and (max-width: 600px) {
-        width:  85%;
-        padding: 15px 15px 40px 15px;
-    }
-`;
+export const Layout = ({ children }: PropsWithChildren) => {
+  return (
+    <div className="p-10 md:w-9/12 lg:w-1/2 mx-auto">
+      {children}
+    </div>
+  );
+};
