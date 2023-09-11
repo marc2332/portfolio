@@ -90,9 +90,7 @@ export default function Home(
   return (
     <main>
       <Head>
-        <meta name="description">
-          Marc Espín's portfolio
-        </meta>
+        <meta name="description" content="Marc Espín's portfolio" />
         <title>Marc Espín</title>
       </Head>
       <div className="mb-4 sm:flex">
