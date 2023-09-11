@@ -1,18 +1,16 @@
-import styled from "styled-components";
 import NextLink from "next/link";
+import { PropsWithChildren } from "react";
 
-export const Link = styled(NextLink)`
-    color: #cf412e;
-`;
-
-export const LinkGreenVariant = styled(NextLink)`
-    color: #82b071;
-`;
-
-export const UncoloredLink = styled(NextLink)`
-    color: #ddb071;
-    text-decoration: none;
-    &:hover {
-        text-decoration: underline;
-    }
-`;
+export const Link = (
+  { href, children }: PropsWithChildren<{ href: string }>,
+) => {
+  return (
+    <NextLink
+      className="underline text-neutral-400"
+      target="_blank"
+      href={href}
+    >
+      {children}
+    </NextLink>
+  );
+};

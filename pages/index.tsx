@@ -1,97 +1,169 @@
 import Head from "next/head";
-import React, { useState } from "react";
-import Card from "../components/Card";
-import Chip from "../components/Chip";
-import { NormalContainer } from "../components/Containers";
+import React from "react";
 import { Link } from "../components/Link";
+import Card from "../components/Card";
+import CircularCard from "../components/CircularCard";
+import { AiOutlineGithub, AiOutlineTwitter } from "react-icons/ai";
+import { BiLogoLinkedin } from "react-icons/bi";
+import { BsMailbox } from "react-icons/bs";
+import Image from "next/image";
+import PFP from "../public/pfp.png";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
-const projects = [
+function normalizeTime(num: number): string {
+  if (num < 10) {
+    return `0${num}`;
+  } else {
+    return num.toString();
+  }
+}
+
+function timeInSpain(): string {
+  const date = new Date();
+
+  const utcTime = date.getTime() + (date.getTimezoneOffset() * 60000);
+
+  // Spain is UTC+02:00
+  const timeOffset = 2;
+
+  const now = new Date(utcTime + (3600000 * timeOffset));
+
+  return `${normalizeTime(now.getHours())}:${normalizeTime(now.getMinutes())}`;
+}
+
+const PROJECTS = [
   {
-    name: " 🦀 Freya",
-    link: "https://github.com/marc2332/freya",
+    name: "Freya",
+    repo: "marc2332/freya",
     description:
-      "Cross-platform GUI library for Rust powered by Skia and Dioxus.",
+      "Native GUI library for Rust powered by Skia and Dioxus.",
   },
   {
-    name: "📝 Freya Editor",
-    link: "https://github.com/marc2332/freya-editor",
+    name: "dioxus-query",
+    repo: "marc2332/dioxus-query",
     description:
-      "Cross-platform code editor made entirely in Rust using Freya.",
+      "State management for Dioxus apps.",
   },
   {
-    name: " 🦑 ghboard",
-    link: "https://github.com/marc2332/ghboard",
+    name: "Freya Editor",
+    repo: "marc2332/freya-editor",
     description:
-      "Github Dashboard entirely written in Rust with Dioxus SSR.",
+      "Code editor made entirely in Rust using Freya.",
   },
   {
-    name: " 💻 Graviton Editor",
-    link: "https://github.com/Graviton-Code-Editor/Graviton-App",
-    description: "Cross-platform minimal code editor made in Rust using Tauri.",
+    name: "ghboard",
+    repo: "marc2332/ghboard",
+    description:
+      "GitHub Dashboard made in Rust With Dioxus.",
+  },
+  {
+    name: "Graviton Editor",
+    repo: "Graviton-Code-Editor/Graviton-App",
+    description: "Minimal code editor made in Rust using Tauri.",
   },
 ];
 
-export default function Home() {
-  const [projectSelected, setSelectedProject] = useState(0);
+export const getServerSideProps: GetServerSideProps<{
+  stars: number[]
+}> = async ({ res }) => {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=3600, stale-while-revalidate=59'
+  )
 
+  const stars = await Promise.all(PROJECTS.map(async (project) => {
+    try {
+      const res = await fetch(`https://api.github.com/repos/${project.repo}`, {
+        headers: {
+          Authorization: `Bearer ${process.env["GITHUB_TOKEN"]}`
+        }
+      })
+      const repo = await res.json()
+      return repo.stargazers_count
+    } catch(_){
+      return 0
+    }
+  }))
+  return { props: { stars } }
+}
+
+export default function Home({ stars }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const nowInSpain = timeInSpain();
   return (
-    <NormalContainer>
+    <>
       <Head>
         <title>Marc Espín</title>
       </Head>
-      <div>
-        <h1>
-          <b>Marc</b> Espín
-        </h1>
-        <p>
-          Web frontend ⚛️ developer but working on Rust projects 🦀 in my spare time.
+      <div className="mb-4 sm:flex">
+        <div className="sm:w-38 sm:mr-2 flex gap-4 sm:gap-0 mb-4 sm:m-0 justify-center">
+          <div className="sm:mr-4 sm:mt-10 flex flex-row sm:flex-col gap-4 sm:gap-0">
+            <CircularCard url="https://github.com/marc2332">
+              <AiOutlineGithub size={25} />
+            </CircularCard>
+            <CircularCard url="https://twitter.com/mkenzo_8">
+              <AiOutlineTwitter size={25} />
+            </CircularCard>
+          </div>
+          <div className="mr-4 flex flex-row sm:flex-col gap-4 sm:gap-0">
+            <CircularCard url="https://www.linkedin.com/in/marc-esp%C3%ADn-sanz-79575a187/">
+              <BiLogoLinkedin size={25} />
+            </CircularCard>
+            <CircularCard url="mailto:mespinsanz@gmail.com">
+              <BsMailbox size={25} />
+            </CircularCard>
+            <CircularCard title="Time in Spain">
+              {`${nowInSpain}`}
+            </CircularCard>
+          </div>
+        </div>
+        <p className="flex-1 leading-8 sm:leading-10 float-left mb-6 sm:mb-0">
+          <Image
+            className="rounded-full float-right"
+            alt="Profile Picture"
+            height={160}
+            width={160}
+            src={PFP}
+          />
+          Frontend 🖼️ developer but working on Rust 🦀 projects in my spare time.
           <br />
-          I like to help and contribute to open source projects. I even have a few of my own, like <Link target="_blank" href="https://github.com/marc2332/freya">Freya</Link>, a native GUI library for Rust powered by Skia and Dioxus, or also <Link target="_blank" href="https://github.com/marc2332/freya-editor">freya-editor</Link>, a cross-platform code editor made using Freya.
+          I like to help and contribute to open source projects. I even have a
+          few of my own, like{" "}
+          <Link href="https://github.com/marc2332/freya">
+            Freya
+          </Link>, a native GUI library for Rust powered by Skia and Dioxus, or
+          also{" "}
+          <Link href="https://github.com/marc2332/freya-editor">
+            freya-editor
+          </Link>, a cross-platform code editor made using Freya.
         </p>
-        <h3>
-          Projects
-        </h3>
-        {projects.map((project, projectIndex) => {
-          return (
-            <Chip
-              key={project.name}
-              value={project.name}
-              selected={projectSelected == projectIndex}
-              onSelected={() => setSelectedProject(projectIndex)}
-            />
-          );
-        })}
-        <Card {...projects[projectSelected]} />
-        <p>For more other projects see my <Link href="https://github.com/marc2332/">Github</Link>.</p>
-        <h3>
-          Contact
-        </h3>
-        <ul>
-          <li>
-            <Link target="_blank" href="https://github.com/marc2332">
-              {"->"} GitHub
-            </Link>
-          </li>
-          <li>
-            <Link
-              target="_blank"
-              href="https://www.linkedin.com/in/marc-esp%C3%ADn-sanz-79575a187/"
-            >
-              {"->"} Linkedin
-            </Link>
-          </li>
-          <li>
-            <Link href="mailto:mespinsanz@gmail.com">
-              {"->"} mespinsanz@gmail.com
-            </Link>
-          </li>
-          <li>
-            <Link href="https://twitter.com/mkenzo_8">
-              {"->"} Twitter
-            </Link>
-          </li>
-        </ul>
       </div>
-    </NormalContainer>
+      <div className="mb-4">
+        <h2 className="text-2xl mb-4 sm:ml-40">News</h2>
+        <Card
+          title="Announced Freya"
+          info={new Date().toDateString()}
+          url="https://marc0.hashnode.dev/freya"
+        />
+      </div>
+      <div className="mb-4">
+        <h2 className="text-2xl mb-4 sm:ml-40">Projects</h2>
+        {PROJECTS.map((project, i) => {
+          return (
+            <Card key={project.name} title={project.name} description={project.description} info={`${stars[i]} stars ⭐`} url={`https://github.com/${project.repo}`}/>
+          )
+        })}
+      </div>
+      <div className="mb-4">
+        <h2 className="text-2xl mb-4 sm:ml-40">Experience</h2>
+        <Card
+          title="Joined Boxfish Studio as Frontend Developer"
+          info={new Date("08/17/2022").toDateString()}
+        />
+        <Card
+          title="Joined ALBA Synchrotron as intern"
+          info={new Date("07/01/2021").toDateString()}
+        />
+      </div>
+    </>
   );
 }

@@ -1,5 +1,9 @@
-my portfolio
+My portfolio
 
-https://mespin.vercel.app/
+https://mespin.me/
 
-wip
+Run with:
+
+```bash
+vercel dev
+```
