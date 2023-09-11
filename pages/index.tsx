@@ -35,26 +35,22 @@ const PROJECTS = [
   {
     name: "Freya",
     repo: "marc2332/freya",
-    description:
-      "Native GUI library for Rust powered by Skia and Dioxus.",
+    description: "Native GUI library for Rust powered by Skia and Dioxus.",
   },
   {
     name: "dioxus-query",
     repo: "marc2332/dioxus-query",
-    description:
-      "State management for Dioxus apps.",
+    description: "State management for Dioxus apps.",
   },
   {
     name: "Freya Editor",
     repo: "marc2332/freya-editor",
-    description:
-      "Code editor made entirely in Rust using Freya.",
+    description: "Code editor made entirely in Rust using Freya.",
   },
   {
     name: "ghboard",
     repo: "marc2332/ghboard",
-    description:
-      "GitHub Dashboard made in Rust With Dioxus.",
+    description: "GitHub Dashboard made in Rust With Dioxus.",
   },
   {
     name: "Graviton Editor",
@@ -64,51 +60,59 @@ const PROJECTS = [
 ];
 
 export const getServerSideProps: GetServerSideProps<{
-  stars: number[]
+  stars: number[];
 }> = async ({ res }) => {
   res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=3600, stale-while-revalidate=59'
-  )
+    "Cache-Control",
+    "public, s-maxage=3600, stale-while-revalidate=59",
+  );
 
   const stars = await Promise.all(PROJECTS.map(async (project) => {
     try {
       const res = await fetch(`https://api.github.com/repos/${project.repo}`, {
         headers: {
-          Authorization: `Bearer ${process.env["GITHUB_TOKEN"]}`
-        }
-      })
-      const repo = await res.json()
-      return repo.stargazers_count
-    } catch(_){
-      return 0
+          Authorization: `Bearer ${process.env["GITHUB_TOKEN"]}`,
+        },
+      });
+      const repo = await res.json();
+      return repo.stargazers_count;
+    } catch (_) {
+      return 0;
     }
-  }))
-  return { props: { stars } }
-}
+  }));
+  return { props: { stars } };
+};
 
-export default function Home({ stars }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Home(
+  { stars }: InferGetServerSidePropsType<typeof getServerSideProps>,
+) {
   const nowInSpain = timeInSpain();
   return (
-    <>
+    <main>
       <Head>
+        <meta name="description">
+          Marc Espín's portfolio
+        </meta>
         <title>Marc Espín</title>
       </Head>
       <div className="mb-4 sm:flex">
         <div className="sm:w-38 sm:mr-2 flex gap-4 sm:gap-0 mb-4 sm:m-0 justify-center">
           <div className="sm:mr-4 sm:mt-10 flex flex-row sm:flex-col gap-4 sm:gap-0">
-            <CircularCard url="https://github.com/marc2332">
+            <CircularCard url="https://github.com/marc2332" title="My GitHub">
               <AiOutlineGithub size={25} />
             </CircularCard>
-            <CircularCard url="https://twitter.com/mkenzo_8">
+            <CircularCard url="https://twitter.com/mkenzo_8" title="My Twitter">
               <AiOutlineTwitter size={25} />
             </CircularCard>
           </div>
           <div className="mr-4 flex flex-row sm:flex-col gap-4 sm:gap-0">
-            <CircularCard url="https://www.linkedin.com/in/marc-esp%C3%ADn-sanz-79575a187/">
+            <CircularCard
+              url="https://www.linkedin.com/in/marc-esp%C3%ADn-sanz-79575a187/"
+              title="My LinkedIn"
+            >
               <BiLogoLinkedin size={25} />
             </CircularCard>
-            <CircularCard url="mailto:mespinsanz@gmail.com">
+            <CircularCard url="mailto:mespinsanz@gmail.com" title="My email">
               <BsMailbox size={25} />
             </CircularCard>
             <CircularCard title="Time in Spain">
@@ -149,8 +153,14 @@ export default function Home({ stars }: InferGetServerSidePropsType<typeof getSe
         <h2 className="text-2xl mb-4 sm:ml-40">Projects</h2>
         {PROJECTS.map((project, i) => {
           return (
-            <Card key={project.name} title={project.name} description={project.description} info={`${stars[i]} stars ⭐`} url={`https://github.com/${project.repo}`}/>
-          )
+            <Card
+              key={project.name}
+              title={project.name}
+              description={project.description}
+              info={`${stars[i]} stars ⭐`}
+              url={`https://github.com/${project.repo}`}
+            />
+          );
         })}
       </div>
       <div className="mb-4">
@@ -164,6 +174,6 @@ export default function Home({ stars }: InferGetServerSidePropsType<typeof getSe
           info={new Date("07/01/2021").toDateString()}
         />
       </div>
-    </>
+    </main>
   );
 }

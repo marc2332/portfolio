@@ -19,7 +19,7 @@ export default function CircularCard(
   );
   if (url) {
     return (
-      <Link href={url}>
+      <Link href={url} aria-label={title}>
         <Card />
       </Link>
     );
