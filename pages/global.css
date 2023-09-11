@@ -11,15 +11,6 @@ html {
   color: white;
 }
 
-#__next {
-  display: flex;
-}
-
-img {
-  max-width: 100%;
-  image-rendering: -moz-crisp-edges;
-}
-
 * {
   -webkit-tap-highlight-color: transparent;
 }
