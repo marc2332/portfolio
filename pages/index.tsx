@@ -111,7 +111,7 @@ export default function Home({ stars }: InferGetServerSidePropsType<typeof getSe
             <CircularCard url="mailto:mespinsanz@gmail.com">
               <BsMailbox size={25} />
             </CircularCard>
-            <CircularCard>
+            <CircularCard title="Time in Spain">
               {`${nowInSpain}`}
             </CircularCard>
           </div>
