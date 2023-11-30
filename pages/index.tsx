@@ -31,7 +31,7 @@ function timeInSpain(): string {
 
   const dateParts = dateFormat.formatToParts(now);
 
-  return `${normalizeTime(dateParts[0].value)}:${dateParts[2].value}`; 
+  return `${normalizeTime(Number(dateParts[0].value))}:${dateParts[2].value}`; 
 }
 
 const PROJECTS = [
