@@ -19,16 +19,19 @@ function normalizeTime(num: number): string {
 }
 
 function timeInSpain(): string {
-  const date = new Date();
+  const now = new Date();
 
-  const utcTime = date.getTime() + (date.getTimezoneOffset() * 60000);
+  const dateFormat = new Intl.DateTimeFormat("es-ES", {
+    timeZone: "Europe/Madrid",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    hour12: false,
+  });
 
-  // Spain is UTC+02:00
-  const timeOffset = 2;
+  const dateParts = dateFormat.formatToParts(now);
 
-  const now = new Date(utcTime + (3600000 * timeOffset));
-
-  return `${normalizeTime(now.getHours())}:${normalizeTime(now.getMinutes())}`;
+  return `${normalizeTime(dateParts[0].value)}:${dateParts[2].value}`; 
 }
 
 const PROJECTS = [
