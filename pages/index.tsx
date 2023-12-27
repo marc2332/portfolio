@@ -146,7 +146,7 @@ export default function Home(
         <h2 className="text-2xl mb-4 sm:ml-40">News</h2>
         <Card
           title="Announced Freya"
-          info={new Date().toDateString()}
+          info={new Date(2023, 8, 2).toDateString()}
           url="https://marc0.hashnode.dev/freya"
         />
       </div>
