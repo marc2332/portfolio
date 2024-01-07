@@ -103,7 +103,7 @@ export default function Home(
             <CircularCard url="https://github.com/marc2332" title="My GitHub">
               <AiOutlineGithub size={25} />
             </CircularCard>
-            <CircularCard url="https://twitter.com/mkenzo_8" title="My Twitter">
+            <CircularCard url="https://twitter.com/mkenzo_8" title="My X">
               <FaXTwitter  size={25} />
             </CircularCard>
           </div>
