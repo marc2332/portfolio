@@ -103,8 +103,8 @@ export default function Home(
             <CircularCard url="https://github.com/marc2332" title="My GitHub">
               <AiOutlineGithub size={25} />
             </CircularCard>
-            <CircularCard url="https://twitter.com/mkenzo_8" title="My X">
-              <FaXTwitter  size={25} />
+            <CircularCard url="https://x.com/mkenzo_8" title="My X">
+              <FaXTwitter size={25} />
             </CircularCard>
           </div>
           <div className="mr-4 flex flex-row sm:flex-col gap-4 sm:gap-0">
