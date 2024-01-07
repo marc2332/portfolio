@@ -3,7 +3,8 @@ import React from "react";
 import { Link } from "../components/Link";
 import Card from "../components/Card";
 import CircularCard from "../components/CircularCard";
-import { AiOutlineGithub, AiOutlineTwitter } from "react-icons/ai";
+import { AiOutlineGithub } from "react-icons/ai";
+import { FaXTwitter } from "react-icons/fa6";
 import { BiLogoLinkedin } from "react-icons/bi";
 import { BsMailbox } from "react-icons/bs";
 import Image from "next/image";
@@ -103,7 +104,7 @@ export default function Home(
               <AiOutlineGithub size={25} />
             </CircularCard>
             <CircularCard url="https://twitter.com/mkenzo_8" title="My Twitter">
-              <AiOutlineTwitter size={25} />
+              <FaXTwitter  size={25} />
             </CircularCard>
           </div>
           <div className="mr-4 flex flex-row sm:flex-col gap-4 sm:gap-0">
