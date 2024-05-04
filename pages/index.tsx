@@ -39,7 +39,7 @@ const PROJECTS = [
   {
     name: "Freya",
     repo: "marc2332/freya",
-    description: "Native GUI library for Rust powered by Skia and Dioxus.",
+    description: "Cross-platform GUI library for Rust powered by Skia and Dioxus.",
   },
   {
     name: "dioxus-query",
@@ -47,8 +47,13 @@ const PROJECTS = [
     description: "State management for Dioxus apps.",
   },
   {
-    name: "Freya Editor",
-    repo: "marc2332/freya-editor",
+    name: "dioxus-radio",
+    repo: "dioxus-community/dioxus-radio",
+    description: "State management with topics for Dioxus.",
+  },
+  {
+    name: "Valin",
+    repo: "marc2332/valin",
     description: "Code editor made entirely in Rust using Freya.",
   },
   {
