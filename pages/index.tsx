@@ -143,8 +143,8 @@ export default function Home(
             Freya
           </Link>, a native GUI library for Rust powered by Skia and Dioxus, or
           also{" "}
-          <Link href="https://github.com/marc2332/freya-editor">
-            freya-editor
+          <Link href="https://github.com/marc2332/valin">
+            valin
           </Link>, a cross-platform code editor made using Freya.
         </p>
       </div>
