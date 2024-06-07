@@ -151,9 +151,14 @@ export default function Home(
       <div className="mb-4">
         <h2 className="text-2xl mb-4 sm:ml-40">News</h2>
         <Card
+          title="Released Freya 0.2"
+          info={new Date(2024, 4, 14).toDateString()}
+          url="https://freyaui.dev/posts/0.2"
+        />
+        <Card
           title="Announced Freya"
           info={new Date(2023, 8, 2).toDateString()}
-          url="https://marc0.hashnode.dev/freya"
+          url="https://freyaui.dev/posts/announcement"
         />
       </div>
       <div className="mb-4">
