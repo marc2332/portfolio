@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "highlight.js/styles/atom-one-dark.css";
+
 body,
 html {
   margin: 0;
@@ -13,4 +15,26 @@ html {
 
 * {
   -webkit-tap-highlight-color: transparent;
+}
+
+code.hljs {
+  background: transparent;
+}
+
+code.hljs {
+  font-family: 'Jetbrains Mono';
+}
+
+code:not(.hljs) {
+  background: rgb(221, 221, 221);
+  color: black;
+  padding: 2px 8px;
+  border-radius: 16px;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+}
+
+::selection {
+  color: black;
+  background: rgb(221, 221, 221);
 }

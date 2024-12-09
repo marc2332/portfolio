@@ -9,11 +9,18 @@
   },
   "dependencies": {
     "@fontsource/inter": "^4.5.14",
+    "@fontsource/jetbrains-mono": "^5.1.1",
+    "@mdx-js/loader": "^3.1.0",
+    "@next/mdx": "^15.0.3",
+    "highlight.js": "^11.10.0",
     "next": "^13.4.19",
     "process": "^0.11.10",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "^4.11.0"
+    "react-icons": "^4.11.0",
+    "rehype-highlight": "^7.0.1",
+    "remark-breaks": "^4.0.0",
+    "remark-gfm": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^18.11.15",
