@@ -43,7 +43,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             <a className=' text-blue-400 hover:underline' href={href}>{children}</a>
         ),
         strong: ({ children }) => (
-            <strong className=' text-neutral-50 leading-8 text-lg'>{children}</strong>
+            <strong className='leading-8 text-lg'>{children}</strong>
         ),
         blockquote: ({ children }) => (
             <blockquote className='italic'>{children}</blockquote>

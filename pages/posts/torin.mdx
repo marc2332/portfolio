@@ -12,7 +12,7 @@ import Head from 'next/head'
   <div style={{flex: 1}}>
     ### Table of Contents
     - [Introduction](#introduction)
-    - [What does it do exactly?](#what-does-it-do-exactly?)
+    - [What does it exactly do?](#what-does-it-do-exactly?)
     - [How to use Torin](#how-to-use-torin)
     - [End](#end)
   </div>
@@ -20,7 +20,7 @@ import Head from 'next/head'
 </div>
 
 ### Introduction
-I'll be sharing with you **Torin**, a **UI Layout library** I have been working and that I use in [**Freya**](https://github.com/marc2332/freya), a GUI library for Rust.
+I'll be sharing with you an overview of **Torin**, a **UI Layout library** I have been working and that I use in [**Freya**](https://github.com/marc2332/freya), a GUI library for Rust.
 \
 When I started working on Freya I quickly went on to adding new layout features, that lead to the layout logic being too coupled with other core logic of Freya, this eventually got to a point where it was blocking the addition of new features such as incremental layout.
 \
@@ -28,7 +28,7 @@ So, one day a thought came to my mind, the idea of doing a library from-scratch 
 \
 That thought eventually became **Torin**.
 
-### What does it do exactly?
+### What does it exactly do?
 **Torin** measures both the **size** and **position** of UI elements and stores them in `LayoutNode`s. 
 \
 Torin itself doesn't store the Nodes layout configurations, these are provided by the consumer to Torin through a abstraction in the form of a trait, called `DOMAdapter`.
@@ -248,10 +248,12 @@ let second_node = layout.get(2)?;  // 100px x 150px
 </div>
 
 #### Incremental measurement
-Let's now mutate a Node and attempt to measure the layout incrementally, so only those changed Nodes are measured.
+The idea behind incremental measurement is to attempt measuring as little nodes as possible to speed up the process.
+\
+Let's now mutate and invalidate a Node:
 
 ```rust
-// First, we mutate the node in the DOM with the new layout config
+// Update the node in the DOM with the new layout config
 demo_dom.set_node(
     2,
     Node::from_size_and_direction(
@@ -260,23 +262,28 @@ demo_dom.set_node(
         DirectionMode::Vertical,
     ),
 );
-// Here we mark as dirty the node so that Torin knows this node was actualy changed
+// Here we mark as dirty the node so that Torin knows it was changed
 layout.invalidate(2);
+```
+\
+`find_best_root` is the previous step to start measuring the layout of Nodes.
+It attempts to find the most suitable node from which to start measuring the tree.
+This means that if we happened to have a very deep tree, and the node we changed was very deep down,
+Torin wouldn't start measuring from the Root Node, but most probably 
+from the Node we changed or at least an ancestor close to it.
+This speeds up a lot the measuring as it skips traversing and remeasuring a lot of Nodes that haven't really change.
+\
+`find_best_root` also marks as dirty those nodes that even though were not 
+changed in the DOM directly by us, they might have been affected by those who actually were.
+This is specially common when using layout strategies to like percentages, auto, flex, etc,
+where the computed layout is not solely defined by the Node itself, by based on other Nodes.
 
-// `find_best_root` is the previous step to start measuring the layout of Nodes
-// It attempts to find the most suitable node from which to start measuring the tre
-// This means that if there happened to be a very deep tree, and a node very deep down changed
-// Torin wouldn't start measuring from the Root Node, but most probably 
-// from the very own changed Node or at least an ancestor Node close to it
-// This saves a lot of compute time and thus speeds up when incremental changes are applied
-// 
-// `find_best_root` also marks as dirty those nodes that even though were not 
-// changed in the DOM directly, they might have been affected by those who were.
-// This is specially common when using layout strategies to like percentages, auto, flex, etc,
-// where the computed layout is not solely defined by the Node itself, by based on other Nodes.
+```rust
 layout.find_best_root(&mut demo_dom);
-
-// Measure!
+```
+\
+Now we measure the nodes:
+```rust
 layout.measure(
     0,
     Rect::new(
@@ -299,9 +306,11 @@ let second_node = layout.get(2)?;  // 100px x 400px - Changed! (was 100px x 150p
 
 The most suitable Node for incremental measurement is that Node that is an ancestor to all the invalidated nodes and also those invalidated by collateral in `find_best_root`.
 \
-In the case of the example from above, the most suitable Node was... the **Root**! No incremental measures were really made! It was the Root node because it has a `Size::Inner` size for the **height**, which means that if a direct children node changes its size, the parent size might potentially change, and thus for this reason we must remeasure from the Root.
+In the case of the example from above, the most suitable Node was... the **Root**! So, no incremental measures were really made! 
 \
-And, even though its true that there was basically no incremental computation done, we didnt really have to do anything special besides calling `Torin::invalidate()` and `Torin::find_best_root()`.
+This is because the Root node has a `Size::Inner` size for the **height**, which means that if a direct children node changes its size, the parent size might potentially change, and thus for this reason we must remeasure from the Root.
+\
+Even though its true that there was basically no incremental measurement done, we didnt really have to do anything special besides calling `Torin::invalidate()` and `Torin::find_best_root()`, which is nice.
 
 #### Actual incremental measurement
 
@@ -394,9 +403,9 @@ let second_node = layout.get(2)?;  // 50 x 500px    - Changed! (was 50 x 200px b
 
 ```
 
-In this case the most suitable Node was not the **Root**, but the Node `1` because it was an ancestor to all the changed nodes, which are Node `2` by direct invalidation and the Node `1` because of its `Size::Inner`, the Root was not affected by those changes as it has a fixed size of `300px` for both height and width.
-
-
+In this case the most suitable Node was not the **Root**, but the Node `1` because it was an ancestor to all the changed nodes, which are Node `2` by direct invalidation and the Node `1` because of its `Size::Inner`.
+\
+The Root was not affected by those changes as it has a fixed size of `300px` for both height and width.
 
 <div class="flex justify-center items-center py-16 flex-col">
     <p className='text-neutral-100 mb-4'>Before the changes</p>
@@ -407,3 +416,10 @@ In this case the most suitable Node was not the **Root**, but the Node `1` becau
     <p className='text-neutral-100 mb-4'>After the changes</p>
     <img src="/fixed-root-size-incremental-result.png" alt="Torin" align="middle" />
 </div>
+
+### End
+This was an overview over Torin, let me know if you want to know more about it, there are other features that I didn't cover like what type of layouts can be made, internal optimizations, integration with third-party text measurement libraries, etc.
+\
+Thanks for reading!
+\
+You can find me on [Github](https://github.com/marc2332/), [LinkedIn](https://www.linkedin.com/in/marc-esp%C3%ADn-sanz-79575a187/) or in [X](https://x.com/mkenzo_8/).
