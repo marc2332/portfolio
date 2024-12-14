@@ -403,7 +403,7 @@ let second_node = layout.get(2)?;  // 50 x 500px    - Changed! (was 50 x 200px b
 
 ```
 
-In this case the most suitable Node was not the **Root**, but the Node `1` because it was an ancestor to all the changed nodes, which are Node `2` by direct invalidation and the Node `1` because of its `Size::Inner`.
+In this case the most suitable Node was not the **Root** (`Node 0`), but the `Node 1` because it is an ancestor to all the changed nodes or was the tallest of them, which are `Node 2` by direct invalidation and the same `Node 1` because of its `Size::Inner`.
 \
 The Root was not affected by those changes as it has a fixed size of `300px` for both height and width.
 
