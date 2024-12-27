@@ -150,11 +150,11 @@ export default function Home(
       </div>
       <div className="mb-4">
         <h2 className="text-2xl mb-4 sm:ml-40">Posts</h2>
-        <Card
+        {/* <Card
           title="Overview of Torin"
           info={new Date(2024, 10, 30).toDateString()}
           url="posts/torin"
-        />
+        /> */}
         <Card
           title="Released Freya 0.2"
           info={new Date(2024, 4, 14).toDateString()}
