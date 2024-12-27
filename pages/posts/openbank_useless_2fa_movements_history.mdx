@@ -12,8 +12,7 @@ Hey!
 \
 [Openbank](https://www.openbank.es/) has a 2FA system for certain actions in their app and webapp, this includes checking the full history of movements, even if you are already logged in.
 \
-This is the route of the webapp where you can see movements of an account: 
-**https:\/\/clientes.openbank.es\/myprofile\/accounts\/\<ACCOUNT_ID\>\/movements**
+Here is the [route](https://clientes.openbank.es/myprofile/accounts/0000000/movements) of the webapp where you can see movements of an account. Make sure to replace the zeros with an account id.
 \
 By default it only displays movements up to around 3 months ago, if you want to see older movements you need to click on the **See More movements** button, which prompts the following popup (translated from Spanish):
 <br/>
@@ -98,7 +97,7 @@ Random example of a log I can see from some years ago:
 > Note: I used Deno to run the script but you can use other runtimes or even a browser as long as you are in the openbank website.
 <br/>
 
-But here is more to this story, the endpoint used in the script is used in another route of the webapp: **https://clientes.openbank.es/myprofile/global/expenses-by-category/**
+But here is more to this story, the endpoint used in the script is used in another [route](https://clientes.openbank.es/myprofile/global/expenses-by-category/) of the webapp.
 \
 This other route allows us to see the movements up to **1 year ago with no extra steps**, though it will get angry at you if you try an older date.
 <br/>
