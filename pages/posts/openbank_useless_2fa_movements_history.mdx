@@ -1,0 +1,105 @@
+import Head from 'next/head'
+
+<Head>
+    <title>Openbank Useless 2FA when cecking the full movements history</title>
+</Head>
+
+# Openbank Useless 2FA when cecking the full movements history
+
+Hey!
+\
+[Openbank](https://www.openbank.es/) has a 2FA system for certain actions in their app and webapp, this includes checking the full history of movements, even if you are already logged in.
+\
+By default it only displays movements up to 3 months ago, if you want to see older movements you need to click on the **See More movements** button, which prompts the following popup (translated from Spanish):
+<br/>
+<div class="flex justify-center items-center">
+    <img src="/openbank_2fa_popup.png" alt="Openbank useless 2fa" align="middle" />
+</div>
+\
+The issue is that this popup is basically **useless** because there is an endpoint from their REST API that we can use to literally query all the transactions from the day the account was created.
+\
+I made the following script in JavaScript that uses the mentioned endpoint.
+\
+You can get your `<CONTRACT_ID>` by digging a bit in the app or webapp, and you can get the `<AUTH_TOKEN>` by inspecting some of the queries sent by the webapp.
+<br/>
+
+```ts
+async function get() {
+    let data = []
+    const categories = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+
+    const contracts = ["<CONTRACT_ID>"]
+    const authToken = `<AUTH_TOKEN>`;
+    await Promise.all(categories.map(async (code) => {
+        const res = await fetch("https://api.openbank.es/categorized-transactions/listbycategorycontracts ", {
+            "credentials": "omit",
+            "headers": {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0",
+                "Accept": "application/json",
+                "Accept-Language": "en-US,en;q=0.5",
+                "Content-Type": "application/json",
+                "version": "2",
+                "openBankAuthToken": authToken,
+                "Sec-GPC": "1",
+                "Sec-Fetch-Dest": "empty",
+                "Sec-Fetch-Mode": "cors",
+                "Sec-Fetch-Site": "same-site",
+                "Pragma": "no-cache",
+                "Cache-Control": "no-cache"
+            },
+            "referrer": "https:clientes.openbank.es/",
+            "body": JSON.stringify({
+                temporalGrouping: "Y",
+                contracts,
+                from: "1234-01-23", // LOL
+                to: "2222-11-22",   // still far away
+                categoryCode: code,
+                banks: null
+            }),
+            "method": "POST",
+            "mode": "cors"
+        });
+        const json = await res.json(); 
+        data = [
+            ...data,
+            ...json
+        ]
+    }));
+
+    return 
+        data.map(tx => ({
+            date: new Date(tx.fecha),
+            title: tx.concept,
+            amount: tx.monto
+        }))
+        .sort((a, b) => a.date - b.date).reverse();
+}
+
+const formatter = new Intl.DateTimeFormat('en-US', { day: "numeric", month: "long" });
+
+for(const tx of await get()) {
+    console.log(`${formatter.format(tx.date)}      ${tx.title}     ${tx.amount}`);
+}
+```
+\
+By running this script **I am able to see what it seems to be the whole movements history from the day I created my account.**
+\
+Random example of a log I can see from some years ago:
+<br/>
+<div class="flex justify-center items-center">
+    <img src="/openbank_2fa_tx_example.png" alt="Openbank useless 2fa tx example" align="middle" />
+</div>
+<br/>
+> Note: I used Deno to run the script but you can use other runtimes or even a browser as long as you are in the openbank website.
+<br/>
+
+I think this issue is kinda dumb but at the same time if you think about... they think they have a security feature, but it doesn't really secure anything, does it? What if other things are also not working as expected?
+\
+Btw, I already tried to contact **Openbank** multiple times privately, I never really got an answer regarding the issue, but rather all I got was "Send it to this other X email" or "Thanks for contacting us, we will answer asap!".
+Last message I got was an automated response on December 2. They surely can't afford to have a decent technical support.
+\
+Idk...
+\
+Anyway, you can find me in [X](https://x.com/mkenzo_8), [GitHub](https://github.com/marc2332/) or [LinkedIn](https://www.linkedin.com/in/marc-esp%C3%ADn-sanz-79575a187/).
+\
+Anyway, imma go watch Squid Game Season 2 now, thanks for reading!
