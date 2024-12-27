@@ -12,7 +12,10 @@ Hey!
 \
 [Openbank](https://www.openbank.es/) has a 2FA system for certain actions in their app and webapp, this includes checking the full history of movements, even if you are already logged in.
 \
-By default it only displays movements up to 3 months ago, if you want to see older movements you need to click on the **See More movements** button, which prompts the following popup (translated from Spanish):
+This is the route of the webapp where you can see movements of an account: 
+**https:\/\/clientes.openbank.es\/myprofile\/accounts\/\<ACCOUNT_ID\>\/movements**
+\
+By default it only displays movements up to around 3 months ago, if you want to see older movements you need to click on the **See More movements** button, which prompts the following popup (translated from Spanish):
 <br/>
 <div class="flex justify-center items-center">
     <img src="/openbank_2fa_popup.png" alt="Openbank useless 2fa" align="middle" />
@@ -30,7 +33,7 @@ async function get() {
     let data = []
     const categories = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
-    const contracts = ["<CONTRACT_ID>"]
+    const contracts = ["<CONTRACT_ID>"] // You can put multiple contracts if you want
     const authToken = `<AUTH_TOKEN>`;
     await Promise.all(categories.map(async (code) => {
         const res = await fetch("https://api.openbank.es/categorized-transactions/listbycategorycontracts ", {
@@ -95,12 +98,24 @@ Random example of a log I can see from some years ago:
 > Note: I used Deno to run the script but you can use other runtimes or even a browser as long as you are in the openbank website.
 <br/>
 
+But here is more to this story, the endpoint used in the script is used in another route of the webapp: **https://clientes.openbank.es/myprofile/global/expenses-by-category/**
+\
+This other route allows us to see the movements up to **1 year ago with no extra steps**, though it will get angry at you if you try an older date.
+<br/>
+<div class="flex justify-center items-center">
+    <img src="/openbank_2fa_minimum_date.png" alt="Openbank useless 2fa minimum date" align="middle" />
+</div>
+\
+In the other hand, the **REST endpoint does not care about maximum dates or extra security requirements**.
+\
+Something I also noticed is that some endpoints and their parameters, are written in English and others in Spanish, perhaps a lack of coordination between teams lead to this.
+\
 I think this issue is kinda dumb but at the same time if you think about... they think they have a security feature, but it doesn't really secure anything, does it? What if other things are also not working as expected?
 \
 Btw, I already tried to contact **Openbank** multiple times privately, I never really got an answer regarding the issue, but rather all I got was "Send it to this other X email" or "Thanks for contacting us, we will answer asap!".
 Last message I got was an automated response on December 2nd. They surely can't afford to have a decent technical support.
 \
-Idk...
+Idk, perhaps I am just missing something... Time will tell I guess!
 \
 Anyway, you can find me in [X](https://x.com/mkenzo_8), [GitHub](https://github.com/marc2332/) or [LinkedIn](https://www.linkedin.com/in/marc-esp%C3%ADn-sanz-79575a187/).
 \
