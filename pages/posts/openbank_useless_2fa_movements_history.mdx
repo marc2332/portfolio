@@ -30,11 +30,12 @@ You can get your `<CONTRACT_ID>` by digging a bit in the app or webapp, and you 
 
 ```ts
 async function get() {
-    let data = []
     const categories = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-
     const contracts = ["<CONTRACT_ID>"] // You can put multiple contracts if you want
     const authToken = `<AUTH_TOKEN>`;
+
+    let data = []
+
     await Promise.all(categories.map(async (code) => {
         const res = await fetch("https://api.openbank.es/categorized-transactions/listbycategorycontracts ", {
             "credentials": "omit",
