@@ -20,7 +20,7 @@ import Head from 'next/head'
 </div>
 
 ### Introduction
-I'll be sharing with you an overview of **Torin**, a **UI Layout library** I have been working and that I use in [**Freya**](https://github.com/marc2332/freya), a GUI library for Rust.
+I'll be sharing with you an overview of **Torin**, a **UI Layout library** I have been developing for [**Freya**](https://github.com/marc2332/freya), a GUI library for Rust.
 \
 When I started working on Freya I quickly went on to adding new layout features, that lead to the layout logic being too coupled with other core logic of Freya, this eventually got to a point where it was blocking the addition of new features such as incremental layout.
 \
@@ -31,17 +31,17 @@ That thought eventually became **Torin**.
 ### What does it exactly do?
 **Torin** measures both the **size** and **position** of UI elements and stores them in `LayoutNode`s. 
 \
-Torin itself doesn't store the Nodes layout configurations, these are provided by the consumer to Torin through a abstraction in the form of a trait, called `DOMAdapter`.
+Torin itself doesn't store the Nodes layout configurations, these are provided by the consumer through a abstraction in the form of a trait, called `DOMAdapter`.
 \
-It is important to note that Torin only measures **2D areas**, other type of elements such as text is not intended to be supported. These though, can be supported by hooking into the measurement system through the use of a custom measure function, in there you can use any third-party library that supports the feature you need, such as text by using **Skia** or **cosmic-text**.
+It is important to note that Torin only measures **2D areas**, other type of elements such as text is not intended to be supported. These though, can still be integrated by hooking into the measurement system through the use of a custom measure function, in there third-party libraries can be used freely, such as **Skia** or **cosmic-text**.
 \
-To understand more or less the flow that goes when using Torin, let's make up some pseudocode:
+To understand more or less the flow that goes when using Torin, here there is some pseudocode:
 ```rust
-// 1. Create a Nodes Tree
+// 1. Create a Nodes Tree of the UI
 let freya_dom = FreyaDOM::new();
 let root_id = Node(0);
-freya_dom.add(root_id, NodeData { 
-    width: Size::Fixed(100.0), 
+freya_dom.add(root_id, NodeData {
+    width: Size::Fixed(100.0),
     height: Size::Fixed(100.0)
 })
 
@@ -117,7 +117,7 @@ impl DemoDOM {
             children.retain(|c| *c != node_id);
         }
 
-        // Semove itself
+        // Remove itself
         self.nodes.remove(&node_id);
 
         // Remove children recursively
@@ -135,6 +135,7 @@ Now let's implement the `DOMAdapter` trait over the `DemoDOM` struct we just mad
 ```rust
   
 impl DOMAdapter<usize> for DemoDOM {
+    // Get the children Nodes of the given Node
     fn children_of(&mut self, node_id: &usize) -> Vec<usize> {
         self.nodes
             .get(node_id)
@@ -143,16 +144,17 @@ impl DOMAdapter<usize> for DemoDOM {
 
     }
 
+    // Get the parent Node of the given Node
     fn parent_of(&self, node_id: &usize) -> Option<usize> {
         self.nodes.get(node_id).and_then(|c| c.parent)
     }
 
-  
+    // Get height in the DOM of the given Node
     fn height(&self, node_id: &usize) -> Option<u16> {
         self.nodes.get(node_id).map(|c| c.height)
-
     }
 
+    // Get the Layout configuration of the given Node
     fn get_node(&self, node_id: &usize) -> Option<Node> {
         self.nodes.get(node_id).map(|c| c.node.clone())
     }
@@ -184,8 +186,8 @@ let mut demo_dom = DemoDOM::default();
 
 // Node ID 0 (Root)
 demo_dom.add(
-    0,       // ID
-    None,    // Parent ID, because it is the root, it doesn't have any
+    0,          // ID
+    None,       // Parent ID, because it is the root, it doesn't have any
     vec![1, 2], // Children IDs of the Nodes below
     Node::from_size_and_direction(
         Size::Pixels(Length::new(300.0)),
@@ -306,7 +308,7 @@ let second_node = layout.get(2)?;  // 100px x 400px - Changed! (was 100px x 150p
 
 The most suitable Node for incremental measurement is that Node that is an ancestor to all the invalidated nodes and also those invalidated by collateral in `find_best_root`.
 \
-In the case of the example from above, the most suitable Node was... the **Root**! So, no incremental measures were really made! 
+In the case of the example from above, the most suitable Node was... the **Root**! So, no incremental measures were really made!
 \
 This is because the Root node has a `Size::Inner` size for the **height**, which means that if a direct children node changes its size, the parent size might potentially change, and thus for this reason we must remeasure from the Root.
 \
@@ -324,9 +326,9 @@ Let's now go with an alternate DOM so we can see incremental layout at play.
 let mut demo_dom = DemoDOM::default();
 
 demo_dom.add(
-    0,       // ID
-    None,    // Parent ID, because it is the root, it doesn't have any
-    vec![1], // Children IDs
+    0,           // ID
+    None,        // Parent ID, because it is the root, it doesn't have any
+    vec![1],     // Children IDs
     Node::from_size_and_direction(
         Size::Pixels(Length::new(300.0)),
         Size::Pixels(Length::new(300.0)),
@@ -335,8 +337,8 @@ demo_dom.add(
 );
 
 demo_dom.add(
-    1,          // ID
-    Some(0),    // Parent ID (root)
+    1,           // ID
+    Some(0),     // Parent ID (root)
     vec![2],     // Children IDs
     Node::from_size_and_direction(
         Size::Pixels(Length::new(100.0)),
@@ -346,9 +348,9 @@ demo_dom.add(
 );
 
 demo_dom.add(
-    2,          // ID
-    Some(1),    // Parent ID (1)
-    vec![],     // Children IDs
+    2,           // ID
+    Some(1),     // Parent ID (1)
+    vec![],      // Children IDs
     Node::from_size_and_direction(
         Size::Pixels(Length::new(50.0)),
         Size::Pixels(Length::new(200.0)),
@@ -403,7 +405,7 @@ let second_node = layout.get(2)?;  // 50 x 500px    - Changed! (was 50 x 200px b
 
 ```
 
-In this case the most suitable Node was not the **Root** (`Node 0`), but the `Node 1` because it is an ancestor to all the changed nodes or was the tallest of them, which are `Node 2` by direct invalidation and the same `Node 1` because of its `Size::Inner`.
+In this case the most suitable Node was not the **Root** (`Node 0`), but the `Node 1` because it is an ancestor to all the changed nodes or because it was the closest to the Root of the changed nodes. Those invalidated were `Node 2` by direct invalidation and `Node 1` because of its `Size::Inner`.
 \
 The Root was not affected by those changes as it has a fixed size of `300px` for both height and width.
 
