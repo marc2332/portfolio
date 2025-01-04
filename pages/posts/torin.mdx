@@ -4,7 +4,7 @@ import Head from 'next/head'
     <title>Torin</title>
 </Head>
 
-# 📐 Torin  ~ Rust UI Layout Library
+# 📐 Torin ~ Rust UI Layout Library
 
 > November 30 2024
 
@@ -29,9 +29,9 @@ So, one day a thought came to my mind, the idea of doing a library from-scratch 
 That thought eventually became **Torin**.
 
 ### What does it exactly do?
-**Torin** measures both the **size** and **position** of UI elements and stores them in `LayoutNode`s. 
+**Torin** measures both the **size** and **position** of UI elements and caches these values for later use. 
 \
-Torin itself doesn't store the Nodes layout configurations, these are provided by the consumer through a abstraction in the form of a trait, called `DOMAdapter`.
+Consumers using Torin provide the layout configuration of each Node through a abstraction in the form of a trait, called `DOMAdapter`.
 \
 It is important to note that Torin only measures **2D areas**, other type of elements such as text is not intended to be supported. These though, can still be integrated by hooking into the measurement system through the use of a custom measure function, in there third-party libraries can be used freely, such as **Skia** or **cosmic-text**.
 \

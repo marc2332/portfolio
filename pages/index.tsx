@@ -151,15 +151,15 @@ export default function Home(
       <div className="mb-4">
         <h2 className="text-2xl mb-4 sm:ml-40">Posts</h2>
         <Card
+          title="Torin ~ Rust UI Layout Library"
+          info={new Date(2024, 0, 4).toDateString()}
+          url="posts/torin"
+        />
+        <Card
           title="OpenBank's useless 2FA check on movements history"
           info={new Date(2024, 11, 29).toDateString()}
           url="posts/openbank_useless_2fa_movements_history"
         />
-        {/* <Card
-          title="Overview of Torin"
-          info={new Date(2024, 10, 30).toDateString()}
-          url="posts/torin"
-        /> */}
         <Card
           title="Released Freya 0.2"
           info={new Date(2024, 4, 14).toDateString()}
