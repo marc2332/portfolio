@@ -13,7 +13,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             const id = children?.toString().toLowerCase().replace(/\s+/g, '-');
             return (
                 <a href={`#${id}`} id={id}>
-                    <h2 className='text-neutral-50 text-4xl leading-16 mb-8 mt-8 font-bold'>{children}</h2>
+                    <h2 className='text-neutral-50 text-4xl leading-16 mb-8 mt-8 font-bold underline'>{children}</h2>
                 </a>
             )
         },
@@ -21,7 +21,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             const id = children?.toString().toLowerCase().replace(/\s+/g, '-');
             return (
                 <a href={`#${id}`} id={id}>
-                    <h2 className='text-neutral-50 text-3xl leading-16 mb-8 mt-8 font-bold'>{children}</h2>
+                    <h2 className='text-neutral-50 text-3xl leading-16 mb-8 mt-8 font-bold underline'>{children}</h2>
                 </a>
             )
         },
@@ -29,7 +29,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             const id = children?.toString().toLowerCase().replace(/\s+/g, '-');
             return (
                 <a href={`#${id}`} id={id}>
-                    <h2 className='text-neutral-50 text-2xl leading-16 mb-6 mt-6 font-bold'>{children}</h2>
+                    <h2 className='text-neutral-50 text-2xl leading-16 mb-6 mt-6 font-bold underline'>{children}</h2>
                 </a>
             )
         },
