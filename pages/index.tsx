@@ -8,7 +8,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { BiLogoLinkedin } from "react-icons/bi";
 import { BsMailbox } from "react-icons/bs";
 import Image from "next/image";
-import PFP from "../public/pfp.png";
+import PFP from "../public/pfp.jpg";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
 function normalizeTime(num: number): string {
