@@ -28,7 +28,7 @@ That thought eventually became **Torin**.
 ### What does it exactly do?
 **Torin** measures both the **size** and **position** of UI elements and caches these values for later use. 
 \
-Consumers using Torin provide the layout configuration of each Node through a abstraction in the form of a trait, called `DOMAdapter`.
+Consumers using Torin provide the layout configuration of each Node through a abstraction in the form of a trait, called `DOMAdapter`. This will allow Torin to read the DOM without you having to make a copy of it.
 \
 It is important to note that Torin only measures **areas**, other type of elements such as text is not intended to be supported. These though, can still be integrated by hooking into the measurement system through the use of a custom measure function, in there, third-party libraries such as **Skia** or **cosmic-text** can be used freely.
 \
