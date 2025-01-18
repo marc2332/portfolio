@@ -4,45 +4,42 @@ import Head from 'next/head'
     <title>Torin</title>
 </Head>
 
-# 📐 Torin  ~ Rust UI Layout Library
+# 📐 Torin ~ Rust UI Layout Library
 
 > November 30 2024
+\
+Note: You can find all the code used in this blog post on the Github [repository](https://github.com/marc2332/portfolio/blob/main/posts-code/torin-0/src/main.rs).
 
-<div style={{display: "flex", "alignItems": "flex-start"}}>
-  <div style={{flex: 1}}>
-    ### Table of Contents
-    - [Introduction](#introduction)
-    - [What does it exactly do?](#what-does-it-do-exactly?)
-    - [How to use Torin](#how-to-use-torin)
-    - [End](#end)
-  </div>
-  <img src="/cover.png" alt="Torin" />
-</div>
+ ### Table of Contents
+- [Introduction](#introduction)
+- [What does it exactly do?](#what-does-it-exactly-do?)
+- [How to use Torin](#how-to-use-torin)
+- [End](#end)
 
 ### Introduction
-I'll be sharing with you an overview of **Torin**, a **UI Layout library** I have been developing for [**Freya**](https://github.com/marc2332/freya), a GUI library for Rust.
+I'll be sharing with you an overview of **Torin**, a **UI Layout library** I have been developing for my GUI library [**Freya**](https://github.com/marc2332/freya).
 \
-When I started working on Freya I quickly went on to adding new layout features, that lead to the layout logic being too coupled with other core logic of Freya, this eventually got to a point where it was blocking the addition of new features such as incremental layout.
+When I started working on Freya I quickly went on to adding new layout features, this lead to the layout logic being too coupled with other core logic of Freya, this eventually got to a point where it was blocking the addition of new features such as incremental torin.
 \
 So, one day a thought came to my mind, the idea of doing a library from-scratch that followed Freya's existing layout system but was entirely decoupled from the project.
 \
 That thought eventually became **Torin**.
 
 ### What does it exactly do?
-**Torin** measures both the **size** and **position** of UI elements and stores them in `LayoutNode`s. 
+**Torin** measures both the **size** and **position** of UI elements and caches these values for later use. 
 \
-Torin itself doesn't store the Nodes layout configurations, these are provided by the consumer through a abstraction in the form of a trait, called `DOMAdapter`.
+Consumers using Torin provide the layout configuration of each Node through a abstraction in the form of a trait, called `DOMAdapter`. This will allow Torin to read the DOM without you having to make a copy of it.
 \
-It is important to note that Torin only measures **2D areas**, other type of elements such as text is not intended to be supported. These though, can still be integrated by hooking into the measurement system through the use of a custom measure function, in there third-party libraries can be used freely, such as **Skia** or **cosmic-text**.
+It is important to note that Torin only measures **areas**, other type of elements such as text is not intended to be supported. These though, can still be integrated by hooking into the measurement system through the use of a custom measure function, in there, third-party libraries such as **Skia** or **cosmic-text** can be used freely.
 \
 To understand more or less the flow that goes when using Torin, here there is some pseudocode:
 ```rust
-// 1. Create a Nodes Tree of the UI
+// 1. Create a Nodes Tree (DOM) of the UI
 let freya_dom = FreyaDOM::new();
 let root_id = Node(0);
 freya_dom.add(root_id, NodeData {
-    width: Size::Fixed(100.0),
-    height: Size::Fixed(100.0)
+    width: Size::Pixels(100.0),
+    height: Size::Pixels(100.0)
 })
 
 // 2. Create the Torin tree
@@ -50,12 +47,22 @@ let mut torin = Torin::new();
 
 // This could be the size of the window
 let canvas_size = Size2D::new(1000.0, 1000.0);
-// 3. Measure the layout of the Nodes tree
+// 3. Walk through the whole DOM to measure and cache every Node
 torin.measure(&mut freya_dom, canvas_size);
 
 // 4. Read the computed layout of the root node
 let root_node = torin.get(root_id);
 assert_eq!(root_node.size.width, 100.);
+
+// 5. Update a Node and mark it as invalidated
+freya_dom.set(root_id, NodeData {
+    width: Size::Pixels(150.0), // Changed from 100.0 to 150.0!
+    height: Size::Pixels(100.0)
+})
+torin.invalidate(root_id);
+
+// 6. Remeasure with the update DOM and invalidated Node
+torin.measure(&mut freya_dom, canvas_size);
 ```
 
 ### How to use Torin
@@ -69,7 +76,7 @@ This is a very simple and non-optimal implementation of a DOM that let us **Add*
 ```rust
 #[derive(Clone)]
 struct DOMNode {
-    parent: Option<usize>,  // Parent ID (Root can't have an ID)
+    parent: Option<usize>,  // Parent ID (Optional because Root does not have any parent)
     children: Vec<usize>,   // IDs of children
     height: u16,            // Height in the DOM (amount of ancestors between this node and the Root)
     node: Node,             // Layout node configuration
@@ -110,15 +117,13 @@ impl DemoDOM {
 
     // Remove a Node
     pub fn remove(&mut self, node_id: usize) {
-        let node = self.nodes.get(&node_id).unwrap();
+        // Remove this Node
+        let node = self.nodes.remove(&node_id).unwrap();
 
         // Remove this Node from the parent
         if let Some(DOMNode { children, .. }) = node.parent.and_then(|p| self.nodes.get_mut(&p)) {
             children.retain(|c| *c != node_id);
         }
-
-        // Remove itself
-        self.nodes.remove(&node_id);
 
         // Remove children recursively
         for child in node.children {
@@ -133,7 +138,6 @@ impl DemoDOM {
 Now let's implement the `DOMAdapter` trait over the `DemoDOM` struct we just made, this way Torin can later access our nodes.
 
 ```rust
-  
 impl DOMAdapter<usize> for DemoDOM {
     // Get the children Nodes of the given Node
     fn children_of(&mut self, node_id: &usize) -> Vec<usize> {
@@ -141,7 +145,6 @@ impl DOMAdapter<usize> for DemoDOM {
             .get(node_id)
             .map(|c| c.children.clone())
             .unwrap_or_default()
-
     }
 
     // Get the parent Node of the given Node
@@ -161,8 +164,8 @@ impl DOMAdapter<usize> for DemoDOM {
 
     fn is_node_valid(&mut self, _node_id: &usize) -> bool {
         // We assume all the nodes in this DOM are actually available for measurement
-        // This could not be the case in certain implementations of DOMs, like in Freya, where it has Placeholders, 
-        // which are elements in the DOM but are not to be measured
+        // This could not be the case in certain implementations of DOMs, like in Freya
+        // where Placeholders elements not to be measured
         true
 
     }
@@ -229,7 +232,7 @@ Let's run an initial measurement of our Nodes and read their values.
 let mut torin = Torin::<usize>::new();
 
 // Run the measurement
-layout.measure(
+torin.measure(
     0,             // Suggested Root ID
     Rect::new(     // Suggested Root area
         Point2D::new(0.0, 0.0),
@@ -239,9 +242,9 @@ layout.measure(
     &mut demo_dom, // Our DOM!
 );
 
-let root_node = layout.get(0)?;    // 300px x 300px
-let first_node = layout.get(1)?;   // 100px x 150px
-let second_node = layout.get(2)?;  // 100px x 150px
+let root_node = torin.get(0)?;    // 300px x 300px
+let first_node = torin.get(1)?;   // 100px x 150px
+let second_node = torin.get(2)?;  // 100px x 150px
 ```
 
 <div class="flex justify-center items-center py-16 flex-col">
@@ -264,29 +267,31 @@ demo_dom.set_node(
         DirectionMode::Vertical,
     ),
 );
-// Here we mark as dirty the node so that Torin knows it was changed
-layout.invalidate(2);
+
+// Here we mark the node as dirty so that Torin knows it was changed
+torin.invalidate(2);
 ```
 \
-`find_best_root` is the previous step to start measuring the layout of Nodes.
-It attempts to find the most suitable node from which to start measuring the tree.
-This means that if we happened to have a very deep tree, and the node we changed was very deep down,
+Before measuring the nodes layouts again we must call `find_best_root` so it 
+attempts to find the most suitable node from which to start measuring the tree.
+\
+This is important because if we happened to have a very deep tree, and the only node we changed was very deep down,
 Torin wouldn't start measuring from the Root Node, but most probably 
 from the Node we changed or at least an ancestor close to it.
-This speeds up a lot the measuring as it skips traversing and remeasuring a lot of Nodes that haven't really change.
+This speeds up a lot the measuring as it skips traversing and remeasuring all those Nodes that haven't changed
+since the last measurement.
 \
-`find_best_root` also marks as dirty those nodes that even though were not 
-changed in the DOM directly by us, they might have been affected by those who actually were.
-This is specially common when using layout strategies to like percentages, auto, flex, etc,
-where the computed layout is not solely defined by the Node itself, by based on other Nodes.
+`find_best_root` will also invalidate colateral nodes affected by the manual invalidations.
+This is specially common when using layout strategies like percentages, auto, flex, etc,
+where the computed layout is not solely defined by the Node itself, but also by other Nodes.
 
 ```rust
-layout.find_best_root(&mut demo_dom);
+torin.find_best_root(&mut demo_dom);
 ```
 \
-Now we measure the nodes:
+Now we measure the nodes for the second time:
 ```rust
-layout.measure(
+torin.measure(
     0,
     Rect::new(
         Point2D::new(0.0, 0.0),
@@ -296,9 +301,9 @@ layout.measure(
     &mut demo_dom,
 );
 
-let root_node = layout.get(0)?;    // 300px x 550px - Changed! (was 300px x 300px before)
-let first_node = layout.get(1)?;   // 100px x 150px
-let second_node = layout.get(2)?;  // 100px x 400px - Changed! (was 100px x 150px before)
+let root_node = torin.get(0)?;    // 300px x 550px - Changed! (was 300px x 300px before)
+let first_node = torin.get(1)?;   // 100px x 150px
+let second_node = torin.get(2)?;  // 100px x 400px - Changed! (was 100px x 150px before)
 ```
 
 <div class="flex justify-center items-center py-16 flex-col">
@@ -308,9 +313,9 @@ let second_node = layout.get(2)?;  // 100px x 400px - Changed! (was 100px x 150p
 
 The most suitable Node for incremental measurement is that Node that is an ancestor to all the invalidated nodes and also those invalidated by collateral in `find_best_root`.
 \
-In the case of the example from above, the most suitable Node was... the **Root**! So, no incremental measures were really made!
+In the case of the example from above, the most suitable Node was... the **Root** (`Node 0`)! So, no incremental measures were really made!
 \
-This is because the Root node has a `Size::Inner` size for the **height**, which means that if a direct children node changes its size, the parent size might potentially change, and thus for this reason we must remeasure from the Root.
+This is because the Root node has a `Size::Inner` size for the **height**, which means it will have the height of its biggest children, therefore if one of these children change it needs to make sure that the Root Node also gets the new biggest height.
 \
 Even though its true that there was basically no incremental measurement done, we didnt really have to do anything special besides calling `Torin::invalidate()` and `Torin::find_best_root()`, which is nice.
 
@@ -360,8 +365,8 @@ demo_dom.add(
 
 
 // Initial measurement
-layout.find_best_root(&mut demo_dom);
-layout.measure(
+torin.find_best_root(&mut demo_dom);
+torin.measure(
     0,
     Rect::new(
         Point2D::new(0.0, 0.0),
@@ -371,9 +376,9 @@ layout.measure(
     &mut demo_dom,
 );
 
-let root_node = layout.get(0)?;    // 300px x 300px
-let first_node = layout.get(1)?;   // 100px x 200px
-let second_node = layout.get(2)?;  // 50px x 200px
+let root_node = torin.get(0)?;    // 300px x 300px
+let first_node = torin.get(1)?;   // 100px x 200px
+let second_node = torin.get(2)?;  // 50px x 200px
 
 // Mutate the Node 2
 demo_dom.set_node(
@@ -385,11 +390,11 @@ demo_dom.set_node(
         DirectionMode::Vertical,
     ),
 );
-layout.invalidate(2);
+torin.invalidate(2);
 
 // Incremental measurement
-layout.find_best_root(&mut demo_dom);
-layout.measure(
+torin.find_best_root(&mut demo_dom);
+torin.measure(
     0,
     Rect::new(
         Point2D::new(0.0, 0.0),
@@ -399,9 +404,9 @@ layout.measure(
     &mut demo_dom,
 );
 
-let root_node = layout.get(0)?;    // 300px x 300px
-let first_node = layout.get(1)?;   // 100px x 500px - Changed! (was 100px x 200px before)
-let second_node = layout.get(2)?;  // 50 x 500px    - Changed! (was 50 x 200px before)
+let root_node = torin.get(0)?;    // 300px x 300px
+let first_node = torin.get(1)?;   // 100px x 500px - Changed! (was 100px x 200px before)
+let second_node = torin.get(2)?;  // 50 x 500px    - Changed! (was 50 x 200px before)
 
 ```
 
