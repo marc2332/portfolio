@@ -47,12 +47,22 @@ let mut torin = Torin::new();
 
 // This could be the size of the window
 let canvas_size = Size2D::new(1000.0, 1000.0);
-// 3. Measure the layout of the Nodes tree
+// 3. Walk through the whole DOM to measure and cache every Node
 torin.measure(&mut freya_dom, canvas_size);
 
 // 4. Read the computed layout of the root node
 let root_node = torin.get(root_id);
 assert_eq!(root_node.size.width, 100.);
+
+// 5. Update a Node and mark it as invalidated
+freya_dom.set(root_id, NodeData {
+    width: Size::Pixels(150.0), // Changed from 100.0 to 150.0!
+    height: Size::Pixels(100.0)
+})
+torin.invalidate(root_id);
+
+// 6. Remeasure with the update DOM and invalidated Node
+torin.measure(&mut freya_dom, canvas_size);
 ```
 
 ### How to use Torin
@@ -262,18 +272,18 @@ demo_dom.set_node(
 torin.invalidate(2);
 ```
 \
-Now, we need to call `find_best_root` before measuring the nodes layouts again.
-It will attempt to find the most suitable node from which to start measuring the tree.
-This means that if we happened to have a very deep tree, and the only node we changed was very deep down,
+Before measuring the nodes layouts again we must call `find_best_root` so it 
+attempts to find the most suitable node from which to start measuring the tree.
+\
+This is important because if we happened to have a very deep tree, and the only node we changed was very deep down,
 Torin wouldn't start measuring from the Root Node, but most probably 
 from the Node we changed or at least an ancestor close to it.
 This speeds up a lot the measuring as it skips traversing and remeasuring all those Nodes that haven't changed
 since the last measurement.
 \
-`find_best_root` will also mark as dirty those nodes that even though were not 
-changed in the DOM directly, they might have been affected by those who actually were.
-This is specially common when using layout strategies to like percentages, auto, flex, etc,
-where the computed layout is not solely defined by the Node itself, but by other Nodes.
+`find_best_root` will also invalidate colateral nodes affected by the manual invalidations.
+This is specially common when using layout strategies like percentages, auto, flex, etc,
+where the computed layout is not solely defined by the Node itself, but also by other Nodes.
 
 ```rust
 torin.find_best_root(&mut demo_dom);
