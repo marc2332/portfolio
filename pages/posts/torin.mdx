@@ -66,7 +66,7 @@ This is a very simple and non-optimal implementation of a DOM that let us **Add*
 ```rust
 #[derive(Clone)]
 struct DOMNode {
-    parent: Option<usize>,  // Parent ID (Root can't have an ID)
+    parent: Option<usize>,  // Parent ID (Optional because Root does not have any parent)
     children: Vec<usize>,   // IDs of children
     height: u16,            // Height in the DOM (amount of ancestors between this node and the Root)
     node: Node,             // Layout node configuration
