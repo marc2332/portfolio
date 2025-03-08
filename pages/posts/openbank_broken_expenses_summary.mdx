@@ -1,0 +1,41 @@
+import Head from 'next/head'
+
+<Head>
+    <title>Openbank's broken expenses summary</title>
+</Head>
+
+# Openbank's broken expenses summary
+
+> March 8 2025
+<br/>
+Hey! here we are again talking about Openbank... 
+\
+Check out my other [blog post](/posts/openbank_useless_2fa_movements_history) to learn about Openbank useless 2FA for movements history.
+\
+**Openbank** has a monthly expenses summary and ... its kinda broken.
+\
+Let's suppose you are going to pay `X` amount of money to `5` different people using normal transfers.
+\
+That basically means `X * 5` right? For example, if `X` is `10€` then it would be `10€ * 5 = 50€`
+\
+One would expect that if Openbank would include those `50€` in the monthly summary, but, it doesn't! Instead it shows `10€`!
+\
+This is because if you send the same amount of money, no matter to who, and in a row, openbank will effectively compact these transactions as if they would have only been one.
+\
+Here we have the actual transactions list:
+
+<br/>
+<div class="flex justify-center items-center">
+    <img src="/openbank_expenses.png" alt="Openbank transactions list" align="middle" />
+</div>
+<br/>
+
+And here we have the expenses summary, notice how we went from 4 1€ to just 1 1€. 
+
+<br/>
+<div class="flex justify-center items-center">
+    <img src="/openbank_expenses_summary.png" alt="Openbank broken expenses summary" align="middle" />
+</div>
+
+\
+That's basically it, just another day finding out bugs in an bank.
