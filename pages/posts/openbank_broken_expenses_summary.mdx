@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Image from 'next/image'
 
 <Head>
     <title>Openbank's broken expenses summary</title>
@@ -25,16 +26,16 @@ This is because if you send the same amount of money, no matter to who, and in a
 Here we have the actual transactions list:
 
 <br/>
-<div class="flex justify-center items-center">
-    <img src="/openbank_expenses.png" alt="Openbank transactions list" align="middle" />
+<div className="flex justify-center items-center">
+    <Image width={850} height={400} src="/openbank_expenses.png" alt="Openbank transactions list" align="middle" />
 </div>
 <br/>
 
 And here we have the expenses summary, notice how we went from 4 1€ to just 1 1€. 
 
 <br/>
-<div class="flex justify-center items-center">
-    <img src="/openbank_expenses_summary.png" alt="Openbank broken expenses summary" align="middle" />
+<div className="flex justify-center items-center">
+    <Image width={850} height={400} src="/openbank_expenses_summary.png" alt="Openbank broken expenses summary" align="middle" />
 </div>
 \
 This is an backend bug by the way, its not in the UI.
