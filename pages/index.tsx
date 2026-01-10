@@ -119,7 +119,7 @@ export default function Home(
             >
               <BiLogoLinkedin size={25} />
             </CircularCard>
-            <CircularCard url="mailto:mespinsanz@gmail.com" title="My email">
+            <CircularCard url="mailto:marc@mespin.me" title="My email">
               <BsMailbox size={25} />
             </CircularCard>
             <CircularCard title="Time in Spain">
