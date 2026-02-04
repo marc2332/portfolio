@@ -6,12 +6,6 @@ export function NavBar() {
       <Link href="/">
         <h1 className="text-5xl font-bold">Marc Espín</h1>
       </Link>
-      <Link
-          className="text-neutral-200 hover:underline underline-offset-4"
-          href="/"
-        >
-          About
-        </Link>
     </div>
   );
 }

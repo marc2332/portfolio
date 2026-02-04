@@ -6,9 +6,9 @@ import CircularCard from "../components/CircularCard";
 import { AiOutlineGithub } from "react-icons/ai";
 import { FaXTwitter } from "react-icons/fa6";
 import { BiLogoLinkedin } from "react-icons/bi";
-import { BsMailbox } from "react-icons/bs";
+import { BsMailbox, BsCalendar } from "react-icons/bs";
 import Image from "next/image";
-import PFP from "../public/pfp.jpg";
+import PFP from "../public/pfp.png";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
 function normalizeTime(num: number): string {
@@ -39,17 +39,29 @@ const PROJECTS = [
   {
     name: "Freya",
     repo: "marc2332/freya",
-    description: "Cross-platform GUI library for Rust powered by Skia and Dioxus.",
-  },
-  {
-    name: "dioxus-query",
-    repo: "marc2332/dioxus-query",
-    description: "State management for Dioxus apps.",
-  },
-  {
-    name: "dioxus-radio",
-    repo: "dioxus-community/dioxus-radio",
-    description: "State management with topics for Dioxus.",
+    description: "Cross-platform, native and declarative Rust GUI library.",
+    subItems: [
+      {
+        name: "Torin",
+        description: "UI layout library.",
+        url: "https://github.com/marc2332/freya/tree/main/crates/torin"
+      },
+      {
+        name: "Freya Core",
+        description: "Components-based runtime system, reactive primitives and UI tree diffing.",
+        url: "https://github.com/marc2332/freya/tree/main/crates/freya-core"
+      },
+      {
+        name: "Freya Query",
+        description: "Reusable data state management library.",
+        url: "https://github.com/marc2332/freya/tree/main/crates/freya-query"
+      },
+      {
+        name: "Freya Radio",
+        description: "Global state management based on topics subscription.",
+        url: "https://github.com/marc2332/freya/tree/main/crates/freya-radio"
+      },
+    ]
   },
   {
     name: "Valin",
@@ -57,9 +69,9 @@ const PROJECTS = [
     description: "Code editor made entirely in Rust using Freya.",
   },
   {
-    name: "ghboard",
-    repo: "marc2332/ghboard",
-    description: "GitHub Dashboard made in Rust With Dioxus.",
+    name: "Andromeda",
+    repo: "tryandromeda/andromeda",
+    description: "Modern, fast, and secure JavaScript & TypeScript runtime.",
   },
   {
     name: "Graviton Editor",
@@ -76,7 +88,10 @@ export const getServerSideProps: GetServerSideProps<{
     "public, s-maxage=3600, stale-while-revalidate=59",
   );
 
-  const stars = await Promise.all(PROJECTS.map(async (project) => {
+  // Only fetch stars for projects that have a repo (not sub-items)
+  const projectsWithRepos = PROJECTS.filter(project => project.repo);
+
+  const stars = await Promise.all(projectsWithRepos.map(async (project) => {
     try {
       const res = await fetch(`https://api.github.com/repos/${project.repo}`, {
         headers: {
@@ -111,6 +126,9 @@ export default function Home(
             <CircularCard url="https://x.com/mkenzo_8" title="My X">
               <FaXTwitter size={25} />
             </CircularCard>
+            <CircularCard url="https://cal.com/marc-espin" title="Schedule a meeting">
+              <BsCalendar size={20} />
+            </CircularCard>
           </div>
           <div className="mr-4 flex flex-row sm:flex-col gap-4 sm:gap-0">
             <CircularCard
@@ -131,21 +149,13 @@ export default function Home(
           <Image
             className="rounded-full float-right"
             alt="Profile Picture"
-            height={160}
-            width={160}
+            height={180}
+            width={180}
             src={PFP}
           />
           Frontend 🖼️ developer but working on Rust 🦀 projects in my spare time.
           <br />
-          I like to help and contribute to open source projects. I even have a
-          few of my own, like{" "}
-          <Link href="https://github.com/marc2332/freya">
-            Freya
-          </Link>, a native GUI library for Rust powered by Skia and Dioxus, or
-          also{" "}
-          <Link href="https://github.com/marc2332/valin">
-            valin
-          </Link>, a cross-platform code editor made using Freya.
+          I am interested in systems programming, GUI development and open source.
         </p>
       </div>
       <div className="mb-4">
@@ -160,11 +170,6 @@ export default function Home(
           info={new Date(2024, 11, 29).toDateString()}
           url="posts/openbank_useless_2fa_movements_history"
         />
-        {/* <Card
-          title="Overview of Torin"
-          info={new Date(2024, 10, 30).toDateString()}
-          url="posts/torin"
-        /> */}
         <Card
           title="Released Freya 0.2"
           info={new Date(2024, 4, 14).toDateString()}
@@ -178,17 +183,36 @@ export default function Home(
       </div>
       <div className="mb-4">
         <h2 className="text-2xl mb-4 sm:ml-40">Projects</h2>
-        {PROJECTS.map((project, i) => {
-          return (
-            <Card
-              key={project.name}
-              title={project.name}
-              description={project.description}
-              info={`${stars[i]} stars ⭐`}
-              url={`https://github.com/${project.repo}`}
-            />
-          );
-        })}
+        {(() => {
+          let starIndex = 0;
+          return PROJECTS.map((project) => {
+            const currentStars = project.repo ? stars[starIndex++] : 0;
+            return (
+              <div key={project.name}>
+                <Card
+                  title={project.name}
+                  description={project.description}
+                  info={project.repo ? `${currentStars} stars ⭐` : ""}
+                  url={project.repo ? `https://github.com/${project.repo}` : undefined}
+                />
+                {project.subItems && (
+                  <div>
+                    {project.subItems.map((subItem) => (
+                      <Card
+                        key={subItem.name}
+                        title={subItem.name}
+                        description={subItem.description}
+                        info=""
+                        url={subItem.url}
+                        variant="sub"
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          });
+        })()}
       </div>
       <div className="mb-4">
         <h2 className="text-2xl mb-4 sm:ml-40">Experience</h2>
