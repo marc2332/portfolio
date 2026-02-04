@@ -215,7 +215,7 @@ export default function Home(
         })()}
       </div>
       <div className="mb-4">
-        <h2 className="text-2xl mb-4 sm:ml-40">Experience</h2>
+        <h2 className="text-2xl mb-4 sm:ml-40">Work</h2>
         <Card
           title="Joined Boxfish Studio as Frontend Developer"
           info={new Date("08/17/2022").toDateString()}
