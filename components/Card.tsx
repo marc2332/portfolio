@@ -17,7 +17,7 @@ export default function Card({ title, description, info, url, variant = 'default
       <p className={`hidden sm:flex mr-4 justify-end items-center text-neutral-300 ${isSub ? 'w-32' : 'w-36'}`}>
         {info}
       </p>
-      <div className={`hover:bg-neutral-900 duration-75 flex p-3 px-6 bg-dark-gray border-neutral-950 border-2 rounded-xl justify-between items-center ${isSub ? 'text-sm flex-1' : 'flex-1'}`}>
+      <div className={`hover:bg-neutral-900 duration-75 flex p-3 px-6 bg-dark-gray border-neutral-950 border-2 rounded-xl justify-between items-center flex-1`}>
         <div className="flex-1">
           <p>{title}</p>
           {description

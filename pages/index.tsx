@@ -37,46 +37,51 @@ function timeInSpain(): string {
 
 const PROJECTS = [
   {
-    name: "Freya",
+    name: "🦀 Freya",
     repo: "marc2332/freya",
     description: "Cross-platform, native and declarative Rust GUI library.",
     subItems: [
       {
-        name: "Torin",
-        description: "UI layout library.",
-        url: "https://github.com/marc2332/freya/tree/main/crates/torin"
-      },
-      {
-        name: "Freya Core",
+        name: "⚡️ freya-core",
         description: "Components-based runtime system, reactive primitives and UI tree diffing.",
         url: "https://github.com/marc2332/freya/tree/main/crates/freya-core"
       },
       {
-        name: "Freya Query",
-        description: "Reusable data state management library.",
-        url: "https://github.com/marc2332/freya/tree/main/crates/freya-query"
+        name: "🏗 torin",
+        description: "UI layout library.",
+        url: "https://github.com/marc2332/freya/tree/main/crates/torin"
       },
       {
-        name: "Freya Radio",
+        name: "📻 Freya Radio",
         description: "Global state management based on topics subscription.",
         url: "https://github.com/marc2332/freya/tree/main/crates/freya-radio"
+      },
+      {
+        name: "🔍 Freya Query",
+        description: "Reusable data state management library.",
+        url: "https://github.com/marc2332/freya/tree/main/crates/freya-query"
       },
     ]
   },
   {
-    name: "Valin",
+    name: "💻 marcterm",
+    repo: "marc2332/marcterm",
+    description: "Terminal Emulator written in Freya and Rust.",
+  },
+  {
+    name: "⚒️ Valin",
     repo: "marc2332/valin",
-    description: "Code editor made entirely in Rust using Freya.",
+    description: "Cross-platform code editor written in Freya and Rust.",
   },
   {
-    name: "Andromeda",
+    name: "⭐️ Andromeda",
     repo: "tryandromeda/andromeda",
-    description: "Modern, fast, and secure JavaScript & TypeScript runtime.",
+    description: "Pure Rust TypeScript/JavaScript runtime.",
   },
   {
-    name: "Graviton Editor",
+    name: "🚀 Graviton Editor",
     repo: "Graviton-Code-Editor/Graviton-App",
-    description: "Minimal code editor made in Rust using Tauri.",
+    description: "Modern-looking cross-platform code editor made with Tauri.",
   },
 ];
 
