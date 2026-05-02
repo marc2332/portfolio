@@ -7,7 +7,14 @@ import remarkBreaks from 'remark-breaks'
 const nextConfig = {
   // Allow .mdx extensions for files
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
-  // Optionally, add any other Next.js config below
+  async rewrites() {
+    return [
+      {
+        source: '/.well-known/atproto-did',
+        destination: '/api/atproto-did',
+      },
+    ]
+  },
 }
  
 const withMDX = createMDX({
