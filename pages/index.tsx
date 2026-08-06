@@ -32,7 +32,7 @@ function timeInSpain(): string {
 
   const dateParts = dateFormat.formatToParts(now);
 
-  return `${normalizeTime(Number(dateParts[0].value))}:${dateParts[2].value}`; 
+  return `${normalizeTime(Number(dateParts[0].value))}:${dateParts[2].value}`;
 }
 
 const PROJECTS = [
@@ -165,6 +165,11 @@ export default function Home(
       </div>
       <div className="mb-4">
         <h2 className="text-2xl mb-4 sm:ml-40">Posts</h2>
+        <Card
+          title="Released Freya 0.4"
+          info={new Date(2026, 6, 16).toDateString()}
+          url="https://freyaui.dev/posts/0.4"
+        />
         <Card
           title="Released Freya 0.3"
           info={new Date(2025, 5, 25).toDateString()}
