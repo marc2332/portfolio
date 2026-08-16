@@ -4,7 +4,7 @@ import { PropsWithChildren } from "react";
 
 export const Layout = ({ children }: PropsWithChildren) => {
   return (
-    <div className="p-10 md:w-9/12 lg:w-1/2 mx-auto sm:translate-x-[-40px]">
+    <div className="p-10 sm:pl-[200px] md:w-[86.25%] lg:w-[57.5%] mx-auto sm:translate-x-[-40px]">
       {children}
     </div>
   );

@@ -7,28 +7,39 @@ interface CardOptions {
   description?: string;
   info: string;
   url?: string;
-  variant?: 'default' | 'sub';
+  subItems?: { name: string; description: string }[];
 }
 
-export default function Card({ title, description, info, url, variant = 'default' }: CardOptions) {
-  const isSub = variant === 'sub';
+export default function Card({ title, description, info, url, subItems }: CardOptions) {
   const Card = () => (
-    <div className={`flex mb-2 ${isSub ? 'ml-8 sm:ml-16 w-[calc(100%-2rem)] sm:w-[calc(100%-4rem)]' : 'w-full'}`}>
-      <p className={`hidden sm:flex mr-4 justify-end items-center text-neutral-300 ${isSub ? 'w-32' : 'w-36'}`}>
+    <div className="flex mb-1.5 w-full">
+      <p className="hidden sm:flex -ml-40 mr-4 justify-end items-center text-neutral-300 w-36">
         {info}
       </p>
       <div className={`hover:bg-neutral-900 duration-75 flex p-3 px-6 bg-dark-gray border-neutral-950 border-2 rounded-xl justify-between items-center flex-1`}>
         <div className="flex-1">
-          <p>{title}</p>
-          {description
-            ? <span className="text-neutral-400 pr-2">{description}</span>
-            : undefined}
+          <p>
+            {title}
+            {description
+              ? <span className="text-neutral-400 pr-2 ml-3">{description}</span>
+              : undefined}
+          </p>
 
-          <p className={`block sm:hidden mr-4 justify-end items-center text-neutral-300 ${isSub ? 'w-32' : 'w-36'}`}>
+          {subItems && (
+            <ul className="list-disc list-inside mt-2 text-neutral-400">
+              {subItems.map((subItem) => (
+                <li key={subItem.name}>
+                  {subItem.name} {subItem.description}
+                </li>
+              ))}
+            </ul>
+          )}
+
+          <p className="block sm:hidden mr-4 justify-end items-center text-neutral-300 w-36">
             {info}
           </p>
         </div>
-        {url ? <FiExternalLink size={isSub ? 16 : 20} /> : undefined}
+        {url ? <FiExternalLink size={20} /> : undefined}
       </div>
     </div>
   );
