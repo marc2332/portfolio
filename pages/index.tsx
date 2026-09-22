@@ -2,6 +2,7 @@ import Head from "next/head";
 import React from "react";
 import { Link } from "../components/Link";
 import Card from "../components/Card";
+import ProjectCard from "../components/ProjectCard";
 import SocialLink from "../components/SocialLink";
 import { AiOutlineGithub } from "react-icons/ai";
 import { FaXTwitter } from "react-icons/fa6";
@@ -9,6 +10,11 @@ import { BiLogoLinkedin } from "react-icons/bi";
 import { BsMailbox, BsCalendar } from "react-icons/bs";
 import Image from "next/image";
 import PFP from "../public/pfp.png";
+import FreyaImage from "../public/projects/freya.webp";
+import MarctermImage from "../public/projects/marcterm.webp";
+import ValinImage from "../public/projects/valin.webp";
+import AndromedaImage from "../public/projects/andromeda.webp";
+import GravitonImage from "../public/projects/graviton.webp";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
 function normalizeTime(num: number): string {
@@ -38,6 +44,8 @@ function timeInSpain(): string {
 const PROJECTS = [
   {
     name: "🦀 Freya",
+    image: FreyaImage,
+    featured: true,
     repo: "marc2332/freya",
     description: "Cross-platform, native and declarative Rust GUI library.",
     subItems: [
@@ -61,21 +69,25 @@ const PROJECTS = [
   },
   {
     name: "💻 marcterm",
+    image: MarctermImage,
     repo: "marc2332/marcterm",
     description: "Terminal Emulator written in Freya and Rust.",
   },
   {
     name: "⚒️ Valin",
+    image: ValinImage,
     repo: "marc2332/valin",
     description: "Cross-platform code editor written in Freya and Rust.",
   },
   {
     name: "⭐️ Andromeda",
+    image: AndromedaImage,
     repo: "tryandromeda/andromeda",
     description: "Pure Rust TypeScript/JavaScript runtime.",
   },
   {
     name: "🚀 Graviton Editor",
+    image: GravitonImage,
     repo: "Graviton-Code-Editor/Graviton-App",
     description: "Modern-looking cross-platform code editor made with Tauri.",
   },
@@ -162,6 +174,12 @@ export default function Home(
           src={PFP}
         />
       </div>
+      <div className="mb-8">
+        <p>
+          Interested in collaborating or sponsoring? Send me an email to{" "}
+          <Link href="mailto:marc@mespin.me">marc@mespin.me</Link>
+        </p>
+      </div>
       <div className="mb-4">
         <h2 className="text-2xl mb-4">Posts</h2>
         <Card
@@ -192,28 +210,20 @@ export default function Home(
       </div>
       <div className="mb-4">
         <h2 className="text-2xl mb-4">Projects</h2>
-        {(() => {
-          let starIndex = 0;
-          return PROJECTS.map((project) => {
-            const currentStars = project.repo ? stars[starIndex++] : 0;
-            return (
-              <Card
-                key={project.name}
-                title={project.name}
-                description={project.description}
-                info={project.repo ? `${currentStars} stars ⭐` : ""}
-                url={project.repo ? `https://github.com/${project.repo}` : undefined}
-                subItems={project.subItems}
-              />
-            );
-          });
-        })()}
-      </div>
-      <div className="mb-4">
-        <p>
-          Interested in collaborating or in my CV? Send me an email to{" "}
-          <Link href="mailto:marc@mespin.me">marc@mespin.me</Link>
-        </p>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {PROJECTS.map((project, index) => (
+            <ProjectCard
+              key={project.name}
+              name={project.name}
+              description={project.description}
+              image={project.image}
+              stars={stars[index]}
+              url={`https://github.com/${project.repo}`}
+              featured={project.featured}
+              subItems={project.subItems}
+            />
+          ))}
+        </div>
       </div>
     </main>
   );

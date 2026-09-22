@@ -16,7 +16,7 @@ export default function Card({ title, description, info, url, subItems }: CardOp
       <p className="hidden sm:flex -ml-40 mr-4 justify-end items-center text-neutral-300 w-36">
         {info}
       </p>
-      <div className={`hover:bg-neutral-900 duration-75 flex p-3 px-6 bg-dark-gray border-neutral-950 border-2 rounded-xl justify-between items-center flex-1`}>
+      <div className={`hover:bg-neutral-900 duration-75 flex p-3 px-6 bg-dark-gray border-neutral-950 border rounded-xl justify-between items-center flex-1`}>
         <div className="flex-1">
           <p>
             {title}
