@@ -11,16 +11,41 @@ interface ProjectCardOptions {
   subItems?: { name: string; description: string }[];
 }
 
-export default function ProjectCard(
-  { name, logo, description, stars, url, featured, subItems }: ProjectCardOptions,
-) {
+export default function ProjectCard({
+  name,
+  logo,
+  description,
+  stars,
+  url,
+  featured,
+  subItems,
+}: ProjectCardOptions) {
+  const formattedStars = stars.toLocaleString("en-US");
+
   return (
     <article className={`project-card${featured ? " project-featured" : ""}`}>
-      <Image className="project-logo" src={logo} alt="" width={32} height={32} />
-      <div className="project-details">
+      <Image
+        className="project-logo"
+        src={logo}
+        alt=""
+        width={32}
+        height={32}
+      />
+      <div>
         <div className="project-title">
-          <h3><Link href={url} target="_blank" rel="noopener noreferrer">{name}</Link></h3>
-          {stars > 0 && <span className="project-stars" aria-label={`${stars.toLocaleString("en-US")} GitHub stars`}>⭐ {stars.toLocaleString("en-US")}</span>}
+          <h3>
+            <Link href={url} target="_blank" rel="noopener noreferrer">
+              {name}
+            </Link>
+          </h3>
+          {stars > 0 && (
+            <span
+              className="project-stars"
+              aria-label={`${formattedStars} GitHub stars`}
+            >
+              ⭐ {formattedStars}
+            </span>
+          )}
         </div>
         <p>{description}</p>
         {subItems && (

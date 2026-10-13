@@ -3,7 +3,9 @@ import { PropsWithChildren } from "react";
 export const Layout = ({ children }: PropsWithChildren) => {
   return (
     <div className="site-shell">
-      <a className="skip-link" href="#main">Skip to content</a>
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
       {children}
       <footer className="site-footer">
         <span>© {new Date().getFullYear()} Marc Espin</span>
