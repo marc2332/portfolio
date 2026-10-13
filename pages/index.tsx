@@ -183,7 +183,7 @@ export default function Home({
             <div className="intro-copy">
               <p>
                 I'm interested in systems programming, GUI development,{" "}
-                <a href="#projects">open source</a>, Rust and Nix.
+                <a href="#projects">open source</a>, LLMs, Rust, Linux and Nix.
               </p>
             </div>
           </div>
