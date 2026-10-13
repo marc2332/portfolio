@@ -89,33 +89,33 @@ export default function Home({ stars }: InferGetServerSidePropsType<typeof getSe
   return (
     <main id="main">
       <Head>
-        <title>Marc Espín</title>
-        <meta name="description" content="Marc Espín. Fullstack and Systems Engineer interested in Rust, GUI development, open source and Nix." />
-        <meta name="author" content="Marc Espín" />
+        <title>Marc Espin</title>
+        <meta name="description" content="Marc Espin. Fullstack and Systems Engineer interested in Rust, GUI development, open source and Nix." />
+        <meta name="author" content="Marc Espin" />
         <link rel="canonical" href="https://mespin.me/" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Marc Espín" />
-        <meta property="og:title" content="Marc Espín" />
+        <meta property="og:site_name" content="Marc Espin" />
+        <meta property="og:title" content="Marc Espin" />
         <meta property="og:description" content="Fullstack and Systems Engineer interested in Rust, GUI development, open source and Nix." />
         <meta property="og:url" content="https://mespin.me/" />
         <meta property="og:image" content="https://mespin.me/pfp.png" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="460" />
         <meta property="og:image:height" content="460" />
-        <meta property="og:image:alt" content="Marc Espín" />
+        <meta property="og:image:alt" content="Marc Espin" />
         <meta property="og:locale" content="en_US" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:creator" content="@mkenzo_8" />
-        <meta name="twitter:title" content="Marc Espín" />
+        <meta name="twitter:title" content="Marc Espin" />
         <meta name="twitter:description" content="Fullstack and Systems Engineer interested in Rust, GUI development, open source and Nix." />
         <meta name="twitter:image" content="https://mespin.me/pfp.png" />
-        <meta name="twitter:image:alt" content="Marc Espín" />
+        <meta name="twitter:image:alt" content="Marc Espin" />
       </Head>
       <section className="intro" aria-labelledby="intro-heading">
         <div className="intro-status"><SpainClock /></div>
         <div className="intro-heading-row">
           <h1 id="intro-heading">Fullstack and Systems Engineer</h1>
-          <Image className="intro-avatar" src="/pfp.png" alt="Marc Espín" width={96} height={96} priority />
+          <Image className="intro-avatar" src="/pfp.png" alt="Marc Espin" width={96} height={96} priority />
         </div>
         <div className="intro-copy">
           <p>I'm interested in systems programming, GUI development, <a href="#projects">open source</a> and Nix.</p>
