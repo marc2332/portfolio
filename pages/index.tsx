@@ -113,12 +113,14 @@ export default function Home({ stars }: InferGetServerSidePropsType<typeof getSe
       </Head>
       <section className="intro" aria-labelledby="intro-heading">
         <div className="intro-status"><SpainClock /></div>
-        <div className="intro-heading-row">
-          <h1 id="intro-heading">Fullstack and Systems Engineer</h1>
+        <div className="intro-body">
+          <div className="intro-text">
+            <h1 id="intro-heading">Fullstack and Systems Engineer</h1>
+            <div className="intro-copy">
+              <p>I'm interested in systems programming, GUI development, <a href="#projects">open source</a> and Nix.</p>
+            </div>
+          </div>
           <Image className="intro-avatar" src="/pfp.png" alt="Marc Espin" width={96} height={96} priority />
-        </div>
-        <div className="intro-copy">
-          <p>I'm interested in systems programming, GUI development, <a href="#projects">open source</a> and Nix.</p>
         </div>
         <div className="social-links" aria-label="Find me online">
           <a href="https://github.com/marc2332">GitHub ↗</a>

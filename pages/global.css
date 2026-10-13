@@ -31,10 +31,11 @@ a:focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
 .site-header nav { display: flex; gap: 20px; font-size: 12px; }
 .intro { padding: 20px 0 28px; }
 .intro-status { color: var(--muted); font-size: 11px; }
-.intro-heading-row { position: relative; padding-right: 112px; margin: 12px 0 8px; }
-.intro-avatar { position: absolute; top: 0; right: 0; border-radius: 8px; }
+.intro-body { display: grid; grid-template-columns: minmax(0, 1fr) 96px; align-items: start; gap: 16px; margin-top: 12px; }
+.intro-text { min-width: 0; }
+.intro-avatar { width: 96px; border-radius: 8px; }
 .intro h1 { margin: 0; font-size: clamp(18px, 2.5vw, 24px); line-height: 1.4; font-weight: 400; letter-spacing: -.04em; }
-.intro-copy { max-width: min(720px, calc(100% - 112px)); color: #bdbdb7; }
+.intro-copy { max-width: 720px; margin-top: 8px; color: #bdbdb7; }
 .intro-copy p { margin: 0; }
 .intro-copy a { color: var(--cyan); }
 .social-links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 14px; font-size: 12px; }
@@ -44,7 +45,7 @@ a:focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
 .project-grid { border-top: 1px solid var(--line); }
 .project-card { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
 .project-card .project-logo { width: 32px; height: 32px; object-fit: contain; margin-top: 2px; }
-.project-title { display: flex; align-items: baseline; gap: 16px; }
+.project-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; }
 .project-card h3 { font-size: 14px; margin: 0 0 4px; font-weight: 400; }
 .project-card h3 a { color: var(--cyan); }
 .project-featured h3 a { color: var(--orange); }
@@ -72,9 +73,11 @@ p > strong { color: var(--foreground); }
 
 @media (max-width: 640px) {
   .site-shell { padding: 0 16px; }
-  .site-header { align-items: flex-start; flex-direction: column; gap: 10px; padding: 14px 0; }
+  .site-header { gap: 12px; padding: 14px 0; }
   .site-header nav { gap: 20px; flex-wrap: wrap; }
   .intro { padding: 16px 0 24px; }
+  .intro-body { grid-template-columns: minmax(0, 1fr) 72px; gap: 12px; }
+  .intro-avatar { width: 72px; }
   .intro-copy { font-size: 12px; }
   .social-links { gap: 8px 16px; }
   .project-modules li { flex-direction: column; gap: 0; margin-bottom: 8px; }
