@@ -6,7 +6,7 @@ export const Layout = ({ children }: PropsWithChildren) => {
       <a className="skip-link" href="#main">Skip to content</a>
       {children}
       <footer className="site-footer">
-        <span>© {new Date().getFullYear()} Marc Espín</span>
+        <span>© {new Date().getFullYear()} Marc Espin</span>
         <a href="https://github.com/marc2332/portfolio">source</a>
       </footer>
     </div>
