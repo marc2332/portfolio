@@ -2,10 +2,13 @@ import Link from "next/link";
 
 export function NavBar() {
   return (
-    <div className="flex items-center justify-between py-5 sm:py-10 flex-col sm:flex-row">
-      <Link href="/">
-        <h1 className="text-5xl font-bold">Marc Espín</h1>
+    <header className="site-header" id="top">
+      <Link href="/" className="wordmark" aria-label="Marc Espín home">
+        marc espín
       </Link>
-    </div>
+      <nav aria-label="Main navigation">
+        <a href="mailto:marc@mespin.me">Say hello ↗</a>
+      </nav>
+    </header>
   );
 }
