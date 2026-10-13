@@ -1,12 +1,11 @@
-import React from "react";
+import type { AppProps } from "next/app";
 import { Layout } from "../components/Layout";
 import { NavBar } from "../components/Navbar";
 import "./global.css";
-import "@fontsource/inter";
 import "@fontsource/jetbrains-mono";
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from "@vercel/analytics/next";
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }: AppProps) {
   return (
     <Layout>
       <NavBar />
