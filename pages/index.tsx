@@ -98,7 +98,7 @@ export default function Home({ stars }: InferGetServerSidePropsType<typeof getSe
         <meta property="og:title" content="Marc Espin" />
         <meta property="og:description" content="Fullstack and Systems Engineer interested in Rust, GUI development, open source and Nix." />
         <meta property="og:url" content="https://mespin.me/" />
-        <meta property="og:image" content="https://mespin.me/pfp.png" />
+        <meta property="og:image" content="https://mespin.me/pfp.png?v=2" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="460" />
         <meta property="og:image:height" content="460" />
@@ -108,7 +108,7 @@ export default function Home({ stars }: InferGetServerSidePropsType<typeof getSe
         <meta name="twitter:creator" content="@mkenzo_8" />
         <meta name="twitter:title" content="Marc Espin" />
         <meta name="twitter:description" content="Fullstack and Systems Engineer interested in Rust, GUI development, open source and Nix." />
-        <meta name="twitter:image" content="https://mespin.me/pfp.png" />
+        <meta name="twitter:image" content="https://mespin.me/pfp.png?v=2" />
         <meta name="twitter:image:alt" content="Marc Espin" />
       </Head>
       <section className="intro" aria-labelledby="intro-heading">
