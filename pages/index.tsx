@@ -142,6 +142,19 @@ export default function Home({ stars }: InferGetServerSidePropsType<typeof getSe
         <div className="section-heading"><h2 id="writing-heading">Posts</h2></div>
         <ul className="post-list">{POSTS.map((post) => <Card key={post.url} {...post} />)}</ul>
       </section>
+      <section className="content-section" id="work" aria-labelledby="work-heading">
+        <div className="section-heading"><h2 id="work-heading">Work</h2></div>
+        <ul className="post-list">
+          <li className="post-row">
+            <time dateTime="2022-08-17">2022-08-17</time>
+            <span>Joined Boxfish Studio</span>
+          </li>
+          <li className="post-row">
+            <time dateTime="2021-07-01">2021-07-01</time>
+            <span>Joined ALBA Synchrotron as intern</span>
+          </li>
+        </ul>
+      </section>
       <section className="contact-section" aria-labelledby="contact-heading">
         <h2 id="contact-heading">Contact</h2>
         <p>For collaboration or sponsoring: <a href="mailto:marc@mespin.me">marc@mespin.me</a></p>
