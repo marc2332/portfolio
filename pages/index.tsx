@@ -89,8 +89,27 @@ export default function Home({ stars }: InferGetServerSidePropsType<typeof getSe
   return (
     <main id="main">
       <Head>
-        <meta name="description" content="Marc Espín. Frontend developer working on Rust, GUIs, and open source." />
         <title>Marc Espín</title>
+        <meta name="description" content="Marc Espín. Fullstack and Systems Engineer interested in Rust, GUI development, open source and Nix." />
+        <meta name="author" content="Marc Espín" />
+        <link rel="canonical" href="https://mespin.me/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Marc Espín" />
+        <meta property="og:title" content="Marc Espín" />
+        <meta property="og:description" content="Fullstack and Systems Engineer interested in Rust, GUI development, open source and Nix." />
+        <meta property="og:url" content="https://mespin.me/" />
+        <meta property="og:image" content="https://mespin.me/pfp.png" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="460" />
+        <meta property="og:image:height" content="460" />
+        <meta property="og:image:alt" content="Marc Espín" />
+        <meta property="og:locale" content="en_US" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:creator" content="@mkenzo_8" />
+        <meta name="twitter:title" content="Marc Espín" />
+        <meta name="twitter:description" content="Fullstack and Systems Engineer interested in Rust, GUI development, open source and Nix." />
+        <meta name="twitter:image" content="https://mespin.me/pfp.png" />
+        <meta name="twitter:image:alt" content="Marc Espín" />
       </Head>
       <section className="intro" aria-labelledby="intro-heading">
         <div className="intro-status"><SpainClock /></div>
