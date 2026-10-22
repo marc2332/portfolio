@@ -11,7 +11,7 @@
   --muted: #989893;
   --line: #383834;
   --orange: #ff713e;
-  --cyan: #64c9ed;
+  --yellow: #fbbf24;
   --green: #a6ce87;
 }
 
@@ -35,7 +35,7 @@ a {
   text-decoration-thickness: 1px;
 }
 a:hover {
-  color: var(--cyan);
+  color: var(--yellow);
 }
 a:focus-visible {
   outline: 2px solid var(--orange);
@@ -43,7 +43,7 @@ a:focus-visible {
 }
 ::selection {
   color: var(--background);
-  background: var(--cyan);
+  background: var(--yellow);
 }
 .site-shell {
   max-width: 960px;
@@ -116,7 +116,7 @@ a:focus-visible {
   margin: 0;
 }
 .intro-copy a {
-  color: var(--cyan);
+  color: var(--yellow);
 }
 .social-links {
   display: flex;
@@ -163,10 +163,10 @@ a:focus-visible {
   font-weight: 400;
 }
 .project-card h3 a {
-  color: var(--cyan);
+  color: var(--yellow);
 }
 .project-featured h3 a {
-  color: var(--orange);
+  color: #a78bfa;
 }
 .project-stars {
   color: var(--muted);
@@ -225,7 +225,7 @@ a:focus-visible {
   font-size: 14px;
 }
 .contact-section a {
-  color: var(--cyan);
+  color: var(--yellow);
 }
 .site-footer {
   display: flex;

@@ -34,16 +34,16 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             )
         },
         p: ({ children }) => (
-            <p className=' text-neutral-300 leading-8 text-lg'>{children}</p>
+            <p className=' text-neutral-300'>{children}</p>
         ),
         ul: ({ children }) => (
             <ul className='text-neutral-200 list-disc list-inside'>{children}</ul>
         ),
         a: ({ children, href }) => (
-            <a className=' text-blue-400 hover:underline' href={href}>{children}</a>
+            <a className=' text-amber-400 hover:underline' href={href}>{children}</a>
         ),
         strong: ({ children }) => (
-            <strong className='leading-8 text-lg'>{children}</strong>
+            <strong>{children}</strong>
         ),
         blockquote: ({ children }) => (
             <blockquote className='italic'>{children}</blockquote>
