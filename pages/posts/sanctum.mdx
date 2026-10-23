@@ -1,4 +1,10 @@
 import Head from 'next/head'
+import Image from 'next/image'
+import desktopImage from '../../public/sanctum-desktop.png'
+import appsImage from '../../public/sanctum-apps.png'
+import fileExplorerImage from '../../public/sanctum-file-explorer.png'
+import appLauncherImage from '../../public/sanctum-app-launcher.png'
+import colorSchemeImage from '../../public/sanctum-color-scheme.jpg'
 
 <Head>
     <title>Sanctum, Linux DE made with Rust and Freya</title>
@@ -32,7 +38,7 @@ The cool thing about is is that all its UI its made with [Freya](https://freyaui
 
 Here is how it looks on my Ubuntu:
 
-![Screenshot of my Setup with Sanctum.](/sanctum-desktop.png)
+<Image src={desktopImage} alt="Screenshot of my Setup with Sanctum." sizes="(max-width: 960px) calc(100vw - 48px), 912px" data-full-src={desktopImage.src} />
 
 ## Why
 
@@ -50,19 +56,19 @@ Just me to be honest (at last for now). I dont consider it stable yet, I find is
 
 Here are the settings app, file explorer, the system monitor and the control panel open:
 
-[![Screenshot of my Setup with Sanctum with some apps.](/sanctum-apps.png)](/sanctum-apps.png)
+<Image src={appsImage} alt="Screenshot of my Setup with Sanctum with some apps." sizes="(max-width: 960px) calc(100vw - 48px), 912px" data-full-src={appsImage.src} />
 
 A closer look at the file explorer:
 
-[![Screenshot of Sanctum's File Explorer.](/sanctum-file-explorer.png)](/sanctum-file-explorer.png)
+<Image src={fileExplorerImage} alt="Screenshot of Sanctum's File Explorer." sizes="(max-width: 960px) calc(100vw - 48px), 912px" data-full-src={fileExplorerImage.src} />
 
 Here is the App launcher:
 
-[![Sanctum's app launcher.](/sanctum-app-launcher.png)](/sanctum-app-launcher.png)
+<Image src={appLauncherImage} alt="Sanctum's app launcher." sizes="(max-width: 960px) calc(100vw - 48px), 912px" data-full-src={appLauncherImage.src} />
 
 It has **light and dark themes** and **color scheme support** too:
 
-[![Sanctum's appearance settings with theme and accent color options.](/sanctum-color-scheme.jpg)](/sanctum-color-scheme.jpg)
+<Image src={colorSchemeImage} alt="Sanctum's appearance settings with theme and accent color options." sizes="(max-width: 960px) calc(100vw - 48px), 912px" data-full-src={colorSchemeImage.src} />
 
 Well, that's it for now! Thanks :)
 

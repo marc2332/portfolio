@@ -26,7 +26,7 @@ export function BlogPost({ children }: PropsWithChildren) {
   }, [selectedImage]);
 
   function openImage(image: HTMLImageElement) {
-    setSelectedImage({ source: image.currentSrc || image.src, description: image.alt });
+    setSelectedImage({ source: image.dataset.fullSrc || image.currentSrc || image.src, description: image.alt });
   }
 
   return (
