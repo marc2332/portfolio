@@ -253,9 +253,53 @@ pre {
   padding: 12px;
   margin: 16px 0;
 }
-main img {
+.blog-post img {
+  display: block;
   max-width: 100%;
   height: auto;
+  margin: 16px 0;
+  cursor: zoom-in;
+}
+.blog-post img:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 4px;
+}
+.image-viewer {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 64px 24px 24px;
+  border: 0;
+  background: rgb(0 0 0 / 90%);
+  color: var(--foreground);
+}
+.image-viewer[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image-viewer::backdrop {
+  background: rgb(0 0 0 / 80%);
+}
+.image-viewer img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.image-viewer-close {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  background: var(--background);
+  color: var(--foreground);
+  font: inherit;
+  cursor: pointer;
 }
 main > p {
   margin-bottom: 12px;
@@ -264,8 +308,8 @@ main > blockquote {
   padding-left: 12px;
   border-left: 2px solid var(--orange);
 }
-p > strong {
-  color: var(--foreground);
+.site-shell strong {
+  color: #ffffff;
 }
 
 @media (max-width: 640px) {

@@ -7,6 +7,12 @@ import remarkBreaks from "remark-breaks";
 const nextConfig = {
   distDir: process.env.NODE_ENV === "development" ? ".next-dev" : ".next",
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  env: {
+    NEXT_PUBLIC_SITE_URL:
+      process.env.VERCEL_ENV === "preview" && process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_BRANCH_URL || process.env.VERCEL_URL}`
+        : "https://mespin.me",
+  },
   async rewrites() {
     return [
       {

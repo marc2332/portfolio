@@ -1,0 +1,75 @@
+import Head from 'next/head'
+import Image from 'next/image'
+import desktopImage from '../../public/sanctum-desktop.png'
+import appsImage from '../../public/sanctum-apps.png'
+import fileExplorerImage from '../../public/sanctum-file-explorer.png'
+import appLauncherImage from '../../public/sanctum-app-launcher.png'
+import colorSchemeImage from '../../public/sanctum-color-scheme.jpg'
+
+<Head>
+    <title>Sanctum, Linux DE made with Rust and Freya</title>
+    <meta name="description" content="A first look at Sanctum, a Linux desktop written in Rust with a user interface built with Freya." />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Sanctum, Linux DE made with Rust and Freya" />
+    <meta property="og:description" content="A first look at Sanctum, a Linux desktop written in Rust with a user interface built with Freya." />
+    <meta property="og:url" content={`${process.env.NEXT_PUBLIC_SITE_URL}/posts/sanctum`} />
+    <meta property="og:image" content={`${process.env.NEXT_PUBLIC_SITE_URL}/sanctum-apps.png`} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="2560" />
+    <meta property="og:image:height" content="1440" />
+    <meta property="og:image:alt" content="Sanctum Linux desktop powered by Rust and Freya" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sanctum, Linux DE made with Rust and Freya" />
+    <meta name="twitter:description" content="A first look at Sanctum, a Linux desktop written in Rust with a user interface built with Freya." />
+    <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_SITE_URL}/sanctum-apps.png`} />
+    <meta name="twitter:image:alt" content="Sanctum Linux desktop powered by Rust and Freya" />
+    <meta name="robots" content="noindex" />
+</Head>
+
+# Sanctum, Linux DE made with Rust and Freya
+
+> October 23 2026
+
+I've been working on **Sanctum**, a **Linux [desktop environment](https://en.wikipedia.org/wiki/Desktop_environment)** written in **Rust**. I've been daily driving it in my Ubuntu for around six months, so more or less since I started working on it.
+
+<br />
+
+The cool thing about it is that all its UI is made with [Freya](https://freyaui.dev) (I'm the author as well), this includes the **Setting**, **File Explorer**, **Monitor** and **Image viewer** app but also and most importantly **Shell** components like the apps **Dock**, **Control Panel**, **Floating notifications** and even the **App Switcher** (Alt + Tab). It also has its own wayland compositor so that I can do more stuff the way I want.
+
+Here is how it looks on my Ubuntu:
+
+<Image src={desktopImage} alt="Screenshot of my Setup with Sanctum." sizes="(max-width: 960px) calc(100vw - 48px), 912px" data-full-src={desktopImage.src} />
+
+#### Why
+
+Why not? I like **Rust** + **Linux** + **Freya**, I might as well use it as much as I can!
+
+#### How
+
+LLMs, yes. Surprise!! I used LLMs to help me build it, I have reviewed as much code as I can. Since it's not an open source project (for now?) and I am the only user I have only really cared about it working as expected and not so about the code quality although I try to have that under control. And testing... well, I run it literally everyday so testing is covered.
+
+#### For who
+
+Just me to be honest (at least for now). I dont consider it stable yet, I find issues from time to time, but at least I get to fix those fast.
+
+#### Show me more
+
+Here are the settings app, file explorer, the system monitor and the control panel open:
+
+<Image src={appsImage} alt="Screenshot of my Setup with Sanctum with some apps." sizes="(max-width: 960px) calc(100vw - 48px), 912px" data-full-src={appsImage.src} />
+
+A closer look at the file explorer:
+
+<Image src={fileExplorerImage} alt="Screenshot of Sanctum's File Explorer." sizes="(max-width: 960px) calc(100vw - 48px), 912px" data-full-src={fileExplorerImage.src} />
+
+Here is the App launcher:
+
+<Image src={appLauncherImage} alt="Sanctum's app launcher." sizes="(max-width: 960px) calc(100vw - 48px), 912px" data-full-src={appLauncherImage.src} />
+
+It has **light and dark themes** and **color scheme support** too:
+
+<Image src={colorSchemeImage} alt="Sanctum's appearance settings with theme and accent color options." sizes="(max-width: 960px) calc(100vw - 48px), 912px" data-full-src={colorSchemeImage.src} />
+
+Well, that's it for now! Thanks :)
+
+Send me an email at marc@mespin.me if you are interested in collaborating with me, or you simply want to chat!
