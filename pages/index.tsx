@@ -204,7 +204,7 @@ export default function Home({
         <div className="social-links" aria-label="Find me online">
           <a href="https://github.com/marc2332">GitHub ↗</a>
           <a href="https://x.com/mkenzo_8">X ↗</a>
-          <a href="https://www.linkedin.com/in/marc-esp%C3%ADn-sanz-79575a187/">
+          <a href="https://www.linkedin.com/in/marc-espin-sanz">
             LinkedIn ↗
           </a>
           <a href="https://cal.com/marc-espin">Schedule a meeting ↗</a>
