@@ -60,6 +60,11 @@ const PROJECTS = [
 
 const POSTS = [
   {
+    title: "Released Freya 0.5",
+    info: "2026-11-06",
+    url: "https://freyaui.dev/posts/0.5",
+  },
+  {
     title: "Sanctum, Linux DE made with Rust and Freya",
     info: "2026-10-24",
     url: "/posts/sanctum",
