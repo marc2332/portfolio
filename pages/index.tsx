@@ -60,6 +60,11 @@ const PROJECTS = [
 
 const POSTS = [
   {
+    title: "Are we layout yet? Comparing Rust UI layout libraries",
+    info: "2026-11-07",
+    url: "/posts/arewelayoutyet",
+  },
+  {
     title: "Released Freya 0.5",
     info: "2026-11-06",
     url: "https://freyaui.dev/posts/0.5",

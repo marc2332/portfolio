@@ -1,0 +1,60 @@
+import Head from 'next/head'
+import Image from 'next/image'
+import benchmarksImage from '../../public/arewelayoutyet-benchmarks.png'
+import featuresImage from '../../public/arewelayoutyet-features.png'
+
+<Head>
+    <title>Are we layout yet? Comparing Rust UI layout libraries</title>
+    <meta name="description" content="A small website to compare the features and performance of Rust UI layout libraries." />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Are we layout yet? Comparing Rust UI layout libraries" />
+    <meta property="og:description" content="A small website to compare the features and performance of Rust UI layout libraries." />
+    <meta property="og:url" content={`${process.env.NEXT_PUBLIC_SITE_URL}/posts/arewelayoutyet`} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Are we layout yet? Comparing Rust UI layout libraries" />
+    <meta name="twitter:description" content="A small website to compare the features and performance of Rust UI layout libraries." />
+</Head>
+
+# Are we layout yet? Comparing Rust UI layout libraries
+
+> November 7 2026
+
+I have recently made **[Are we layout yet?](https://arewelayoutyet.mespin.me)**, a small website to compare **UI layout libraries for Rust**. The idea is to showcase what are the available libraries in the Rust ecosystem and compare their features and performance.
+
+<br />
+
+It currently includes **Taffy**, **Morphorm**, **Torin**, **Yoga**, **ui-layout**, **Clay**, **Ply**, **Backer**, **Cephal** and **keru_layout**. Some are written in Rust and others, like Yoga and Clay, are available through Rust bindings to their C++ and C engines.
+
+#### Why
+
+I work on [Freya](https://freyaui.dev) and **Torin**, so this is something I care about! I thought it would be interesting for the community to see what is available.
+
+#### What is compared
+
+The **feature table** covers things like wrapping, sizing, spacing, min/max constraints, aspect ratios and custom content measurement. It also distinguishes between partial support, a different layout model and things that are not verified.
+
+<Image src={featuresImage} alt="Are we layout yet feature table comparing layout capabilities across Taffy, Morphorm, Torin, Yoga, ui-layout, Clay, Ply, Backer, Cephal and keru_layout." sizes="(max-width: 960px) calc(100vw - 48px), 912px" data-full-src={featuresImage.src} />
+
+Then there are the **benchmarks**, using shared PanGUI workloads adapted from [Taffy's benchmark suite](https://github.com/DioxusLabs/taffy). These include nested layouts, wrapping, growing elements, constraints and some pretty wide trees.
+
+You can select previous runs and switch the graph between **relative time**, **milliseconds** and **average nanoseconds per workload node**, using a **linear or logarithmic scale**. You can also show outliers, hover over libraries to highlight them or click to hide them if you only want to compare a few.
+
+<Image src={benchmarksImage} alt="Are we layout yet benchmark graph comparing average layout time per workload node across ten libraries. Faster results are further left." sizes="(max-width: 960px) calc(100vw - 48px), 912px" data-full-src={benchmarksImage.src} />
+
+#### So, which one do I pick?
+
+Well, it depends! These libraries dont all support the same features or do the same work.
+
+So, while the performance results are important also make sure to look at the features to decide!
+
+#### For who
+
+Anyone building a GUI in Rust, working on a layout library, or simply curious about what is available.
+
+#### Source code?
+
+Yes! The website, benchmark adapters and methodology are on [GitHub](https://github.com/marc2332/arewelayoutyet). If you spot something wrong in the comparison or an adapter, please open an issue or a PR.
+
+You can check it out at **[arewelayoutyet.mespin.me](https://arewelayoutyet.mespin.me)**.
+
+Thanks :)
