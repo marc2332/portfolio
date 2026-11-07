@@ -7,10 +7,16 @@ import featuresImage from '../../public/arewelayoutyet-features.png'
     <title>Are we layout yet? Comparing Rust UI layout libraries</title>
     <meta name="description" content="A small website to compare the features and performance of Rust UI layout libraries." />
     <meta property="og:type" content="article" />
+    <meta property="og:image" content={`${process.env.NEXT_PUBLIC_SITE_URL}${benchmarksImage.src}`} />
+    <meta property="og:image:width" content={`${benchmarksImage.width}`} />
+    <meta property="og:image:height" content={`${benchmarksImage.height}`} />
+    <meta property="og:image:alt" content="Performance comparison of ten Rust UI layout libraries." />
     <meta property="og:title" content="Are we layout yet? Comparing Rust UI layout libraries" />
     <meta property="og:description" content="A small website to compare the features and performance of Rust UI layout libraries." />
     <meta property="og:url" content={`${process.env.NEXT_PUBLIC_SITE_URL}/posts/arewelayoutyet`} />
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_SITE_URL}${benchmarksImage.src}`} />
+    <meta name="twitter:image:alt" content="Performance comparison of ten Rust UI layout libraries." />
     <meta name="twitter:title" content="Are we layout yet? Comparing Rust UI layout libraries" />
     <meta name="twitter:description" content="A small website to compare the features and performance of Rust UI layout libraries." />
 </Head>
