@@ -16,7 +16,7 @@ const PROJECTS = [
     name: "Freya",
     logo: "/projects/logos/freya.svg",
     featured: true,
-    repo: "marc2332/freya",
+    repo: "freya-rs/freya",
     description: "Cross-platform, native and declarative Rust GUI library.",
     subItems: [
       {
